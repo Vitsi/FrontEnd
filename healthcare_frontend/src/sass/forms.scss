@@ -1,0 +1,16 @@
+.signup-patients{
+    
+    label.required::after {
+        content: "*";
+        color: red;
+        margin-left: 0.2em;
+    }
+}
+
+.signup-hospitals {
+    label.required::after {
+        content: "*";
+        color: red;
+        margin-left: 0.2em;
+    }
+}

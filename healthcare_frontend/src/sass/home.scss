@@ -1,0 +1,23 @@
+.landing-page {
+    #hero-btns {
+       
+        .btn {
+            transition: opacity 0.3s ease;
+        }
+        #btn1{
+            background-color: rgb(35, 217, 41);
+        }
+        #btn1:hover {
+            opacity: 0.9;
+            background-color: rgb(171, 251, 174);
+        }
+        #btn2:hover {
+            opacity: 1;
+        }
+    }
+      #cta-section{
+      #cta-bkg{
+        background: linear-gradient(to right, #46e5c5, #8D5BFF);        
+      }
+    }
+}

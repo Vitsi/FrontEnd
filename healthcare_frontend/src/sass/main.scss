@@ -1,0 +1,17 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'daisyui/dist/full.css';
+
+
+@import '../sass/navbar.scss';
+@import '../sass/forms.scss';
+@import '../sass/home.scss';
+
+:root {
+    --primary-color: #3490dc;
+    --secondary-color: #6574cd;
+    --accent-color: #9561e2;
+    --dark-color: #4b5563;
+    --light-color: #f7fafc;
+}
