@@ -9,12 +9,12 @@ interface FormData {
     password: string;
     email: string;
     phoneNumber: string;
-    address: {
-        area: string;
-        city: string;
-    };
+    area: string;
+    city: string;
     certification: File | null;
+    specialty: string;
     role: string;
+   
 }
 
 const SignupHospitals: React.FC = () => {
@@ -23,11 +23,10 @@ const SignupHospitals: React.FC = () => {
         password: "",
         email: "",
         phoneNumber: "",
-        address: {
-            area: "",
-            city: "",
-        },
-        certification: null ,
+        area: "",
+        city: "",
+        certification: null,
+        specialty: "",
         role: "hospital",
     });
 
@@ -37,47 +36,40 @@ const SignupHospitals: React.FC = () => {
     const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target;
-        setFormData({...formData, [name]: value});
-    }
-
-    const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        setFormData ((prevState) => ({
-            ...prevState,
-            address: {
-                ...prevState.address,
-                [name]: value
-            }
-        }));
-    }
+        setFormData({ ...formData, [name]: value });
+    };
 
+    const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
     const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
-      const value = e.target.value;
-      setConfirmPassword(value);   
-    }
+        const value = e.target.value;
+        setConfirmPassword(value);   
+      }
+  
 
     const handleCertificationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0] || null; // Get the first selected file or null
         setFormData({ ...formData, certification: file });
     };
 
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>)=>{
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
 
         try {
-            if (formData.password !== confirmPassword){
+            if (formData.password !== confirmPassword) {
                 throw new Error("Passwords do not match");
             }
 
             await AuthService.registerHospitals(formData);
-            console.log("registration succesful");
+            console.log("Registration successful");
             navigate("/");
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        }catch (error: any) {
+        } catch (error: any) {
             setError(error.message);
         } finally {
             setLoading(false);
@@ -86,8 +78,8 @@ const SignupHospitals: React.FC = () => {
 
     return(
         <div className='signup-hospitals'>
-            <Navbar />
-            <div className="flex items-center justify-center p-12">
+            <Navbar isLoggedIn={false} />
+            <div className="flex items-center justify-center p-12 mt-20">
                 <div className="mx-auto w-full max-w-[550px] bg-white">
                     <form onSubmit={handleSubmit}>
                         <div className="mb-5">
@@ -148,8 +140,8 @@ const SignupHospitals: React.FC = () => {
                                 id="area"
                                 placeholder="Enter area"
                                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                value={formData.address.area}
-                                onChange={handleAddressChange}
+                                value={formData.area}
+                                onChange={handleChange}
                             />
                             </div>
                             </div>
@@ -159,8 +151,8 @@ const SignupHospitals: React.FC = () => {
                                 name="city"
                                 id="city"
                                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                value={formData.address.city}
-                                onChange={handleAddressChange}
+                                value={formData.city}
+                                onChange={handleChangeSelect}
                             >
                                     <option value="">Select City</option>
                                     <option value="city1">Addis Ababa</option>
@@ -168,6 +160,22 @@ const SignupHospitals: React.FC = () => {
                             </div>
                             </div>      
                         </div>
+                        </div>
+
+                        <div className="mb-5">
+                            <label htmlFor="specialty" className="mb-3 block text-base font-medium text-[#07074D] required">
+                                Specialty
+                            </label>
+                            <input
+                                type="text"
+                                name="specialty"
+                                id="specialty"
+                                placeholder="Enter hospital specialty"
+                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                value={formData.specialty}
+                                onChange={handleChange}
+                                required
+                            />
                         </div>
                         <div className="mb-5">
                         <label htmlFor="certificate" className="mb-3 block text-base font-medium text-[#07074D]">

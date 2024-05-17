@@ -3,7 +3,8 @@ import Home from './pages/home';
 import SignupPatients from './pages/login/signupPatients';
 import Signin from './pages/login/signin';
 import SignupHospitals from './pages/login/signupHcp';
-import PatientHome from './pages/Patients/patientHome';
+import PatientHome from './pages/Patients/home/patientHome';
+import Appointments from './pages/Patients/appointments/appointments';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       </Routes>
       <Routes>
         <Route path="/patient-home" element={<PatientHome/>} />
+        <Route path="/patient-appointments" element={<Appointments/>} />
       </Routes>
     </Router>
   );

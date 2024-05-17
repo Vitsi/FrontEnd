@@ -11,10 +11,8 @@ interface FormData {
     phoneNumber : string;
     dateOfBirth: string ;
     emergencyContacts: string;
-    address: {
-        area: string;
-        city: string;
-    }
+    area: string;
+    city: string;
     role: string;
 }
 
@@ -26,10 +24,8 @@ const SignupPatients: React.FC = () => {
         phoneNumber: "",
         dateOfBirth: "",
         emergencyContacts: "",
-        address: {
-            area: "",
-            city: "",
-        },
+        area: "",
+        city: "",
         role: "patient"
     });
     const [confirmPassword, setConfirmPassword] = useState<string>("");
@@ -41,23 +37,16 @@ const SignupPatients: React.FC = () => {
         const { name, value } = e.target;
         setFormData({...formData, [name]: value});
     }
+    const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const { name, value } = e.target;
+      setFormData({ ...formData, [name]: value });
+  };
     const handleConfirmPasswordChange = (e : React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setConfirmPassword(value);
     }
-    const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            address: {
-                ...prevState.address,
-                [name]: value
-            }
-        }));
-    }
 
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
@@ -80,8 +69,8 @@ const SignupPatients: React.FC = () => {
     
   return (
     <div className='signup-patients'>
-        <Navbar/>
-      <div className="flex items-center justify-center p-12">
+        <Navbar isLoggedIn={false}/>
+      <div className="flex mt-14 items-center justify-center p-12">
         <div className="mx-auto w-full max-w-[550px] bg-white">
           <form  onSubmit={handleSubmit}>
             <div className="mb-5">
@@ -162,41 +151,40 @@ const SignupPatients: React.FC = () => {
                 required
               />
             </div> 
-           
             <div className="mb-3">
-              <label className="mb-3 block text-base font-medium text-[#07074D]">
-                Address Details
-              </label>
-              <div className="-mx-3 flex flex-wrap">
-                <div className="w-full px-3 sm:w-1/2">
-                  <div className="mb-5">
-                    <input
-                      type="text"
-                      name="area"
-                      id="area"
-                      placeholder="Enter area"
-                      className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                      value={formData.address.area}
-                      onChange={handleAddressChange}
-                   />
-                  </div>
-                </div>
-                <div className="w-full px-3 sm:w-1/2">
-                  <div className="mb-5">
-                  <select
-                    name="city"
-                    id="city"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                    value={formData.address.city}
-                    onChange={handleAddressChange}
-                   >
-                        <option value="">Select City</option>
-                        <option value="city1">Addis Ababa</option>
-                    </select>
-                  </div>
-                </div>      
-              </div>
-            </div>
+                        <label className="mb-3 block text-base font-medium text-[#07074D]">
+                            Address Details
+                        </label>
+                        <div className="-mx-3 flex flex-wrap">
+                            <div className="w-full px-3 sm:w-1/2">
+                            <div className="mb-5">
+                                <input
+                                type="text"
+                                name="area"
+                                id="area"
+                                placeholder="Enter area"
+                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                value={formData.area}
+                                onChange={handleChange}
+                            />
+                            </div>
+                            </div>
+                            <div className="w-full px-3 sm:w-1/2">
+                            <div className="mb-5">
+                            <select
+                                name="city"
+                                id="city"
+                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                value={formData.city}
+                                onChange={handleChangeSelect}
+                            >
+                                    <option value="">Select City</option>
+                                    <option value="city1">Addis Ababa</option>
+                                </select>
+                            </div>
+                            </div>      
+                        </div>
+                        </div>
             <div className="mb-5">
               <label htmlFor="password" className="mb-3 block text-base font-medium text-[#07074D] required">
                 Password

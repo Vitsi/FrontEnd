@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../components/common/navbar';
 import Footer from '../components/common/footer';
 import svg from '../assets/images/heroimage.png';
-import logo from '../assets/images/logos/logoaqualeaf.png';
+import logo from '../assets/images/logos/logowhiteleaf.png';
 import FeatureSection from '../components/features';
 // import Testimonial from '../components/testimonials';
 import Cta from '../components/cta';
@@ -11,7 +11,7 @@ const Home: React.FC = () => {
     return (
         <>
             <Navbar isLoggedIn={false}/>
-            <main className='landing-page'>
+            <main className='landing-page mt-14'>
                 {/* Hero Section */}
                 <section className="bg-gray-900 text-white py-20">
                     <div className="container mx-auto flex md:px-24 md:py-10 md:flex-row flex-col items-center">
