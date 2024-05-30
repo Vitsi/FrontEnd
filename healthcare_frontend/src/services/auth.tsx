@@ -48,7 +48,9 @@ const AuthService = {
               }
           }, 1000);
       });
-    }
+    },
+    getUserProfile: () => {
+    },
   };
 
   export default AuthService;

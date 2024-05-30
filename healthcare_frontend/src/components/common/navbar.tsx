@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 import logo from '../../assets/images/logos/logoblackleaf.png';
 import { GoBell } from 'react-icons/go';
 import { VscAccount } from 'react-icons/vsc';
 
 const Navbar: React.FC<{ isLoggedIn: boolean }> = ({ isLoggedIn }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const profileImage = useSelector((state: any) => state.user.profileImage);
+  const profileImage = useSelector((state: RootState) => state.user.profileImage);
 
   return isLoggedIn ? (
     <nav className="navbar fixed top-0 z-50 w-full bg-white shadow-md">

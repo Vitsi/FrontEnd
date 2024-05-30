@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import HospitalCard from "../home/hospitalCard";
+import HospitalCard from "../../../components/cards/hospitalCard";
 import LoadingSpinner from "../../../components/common/loadingSpinner";
-import { fetchTotalCards } from '../../../services/hospitalCards';
+import { fetchTotalCards } from '../../../services/hospitalCardsFetch';
 import img from '../../../assets/test 3.jpg';
 
 const PatientHospital: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalCards, setTotalCards] = useState(0);
     const [loading, setLoading] = useState(false);
-    const cardsPerPage = 5;
+    const cardsPerPage = 4;
 
     const fetchTotalCardsData = async (page: number) => {
         setLoading(true);
@@ -45,6 +45,9 @@ const PatientHospital: React.FC = () => {
                 <HospitalCard
                     key={i}
                     showButtons={true}
+                    isPending= {false}
+                    phoneNumber='09-00-00-00-00'
+                    appointmentTime= 'Mon-Jul-03 at 3:00'
                     {...hospitalData}
                 />
             );
@@ -68,7 +71,7 @@ const PatientHospital: React.FC = () => {
             paginationButtons.push(
                 <button
                     key={i}
-                    className={`btn btn-square ${currentPage === i ? 'bg-blue-500 text-white' : ''}`}
+                    className={`rounded-full px-4 py-2 ${currentPage === i ? 'bg-blue-500 text-white' : 'hover:bg-blue hover:text-gray-600 transition duration-300 ease-in-out'}`}
                     onClick={() => handlePageChange(i)}
                 >
                     {i}

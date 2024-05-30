@@ -14,6 +14,7 @@ interface FormData {
     area: string;
     city: string;
     role: string;
+    profileImage: null;
 }
 
 const SignupPatients: React.FC = () => {
@@ -26,7 +27,8 @@ const SignupPatients: React.FC = () => {
         emergencyContacts: "",
         area: "",
         city: "",
-        role: "patient"
+        role: "patient",
+        profileImage: null
     });
     const [confirmPassword, setConfirmPassword] = useState<string>("");
     const [error, setError] = useState<string | null>(null);

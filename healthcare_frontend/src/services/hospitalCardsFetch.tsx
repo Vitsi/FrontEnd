@@ -1,4 +1,3 @@
-// api.ts
 export const fetchTotalCards = (page: number): Promise<number> => {
     return new Promise((resolve, reject) => {
         // Simulate API delay

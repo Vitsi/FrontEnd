@@ -7,11 +7,11 @@ import PatientHistory from "./patientHistory";
 import PatientHospital from './patinetHospital';
 
 const Appointments: React.FC = () => {
-  const [selectedTab, setSelectedTab] = useState('Request');
+  const [selectedTab, setSelectedTab] = useState('Requests');
 
   const renderContent = () => {
     switch (selectedTab) {
-      case 'Request':
+      case 'Requests':
         return <PatientRequest />;
       case 'History':
         return <PatientHistory />;
@@ -31,10 +31,10 @@ const Appointments: React.FC = () => {
         <div className="grid gap-4 md:grid-cols-2">
           <div id="top-pagination" className="flex flex-row gap-10">
             <button
-              className={`text-lg font-bold ${selectedTab === 'Request' ? 'text-blue-500 border-b-2 border-blue-500' : ''}`}
-              onClick={() => setSelectedTab('Request')}
+              className={`text-lg font-bold ${selectedTab === 'Requests' ? 'text-blue-500 border-b-2 border-blue-500' : ''}`}
+              onClick={() => setSelectedTab('Requests')}
             >
-              Request
+              Requests
             </button>
             <button
               className={`text-lg font-bold ${selectedTab === 'History' ? 'text-blue-500 border-b-2 border-blue-500' : ''}`}
