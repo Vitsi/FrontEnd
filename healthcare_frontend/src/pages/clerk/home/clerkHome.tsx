@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Navbar from "../../../components/common/navbar";
 import ClerkSidebar from "../../../components/sidebar/clerkSidebar";
 import AppointmentRequests from "./appointmentRequests";
 import LabTestRequests from "./labTestRequests";
@@ -15,7 +14,11 @@ const ClerkHome : React.FC =() => {
         case 'LabTestRequests':
             return <LabTestRequests />;
         case 'RequestCalender':
-            return <ClerkCalendar/>;
+            return <ClerkCalendar onDoctorSelect={function (): void {
+              throw new Error("Function not implemented.");
+            } } onTimeSlotSelect={function (): void {
+              throw new Error("Function not implemented.");
+            } }/>;
         default:
             return null;
         }

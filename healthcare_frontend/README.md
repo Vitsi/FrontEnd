@@ -7,6 +7,9 @@ tailwindcss
 heroicons/react
 react-icons
 @fullcalendar/daygrid
+@fullcalendar/react
+toastify
+
 
 
 state mananegment

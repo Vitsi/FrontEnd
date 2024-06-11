@@ -49,7 +49,7 @@ const PatientRequest: React.FC = () => {
                 phoneNumber={'+251-911-2345'}
                 onCancelAppointment={() => cancelAppointment(index)} 
             />
-        ));
+        )).reverse();
     };
 
     const handlePageChange = (pageNumber: number) => {

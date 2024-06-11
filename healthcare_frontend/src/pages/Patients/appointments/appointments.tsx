@@ -3,7 +3,7 @@ import Navbar from "../../../components/common/navbar";
 import PatientSidebar from "../../../components/sidebar/patientSidebar";
 import SearchBar from "../../../components/common/searchBar";
 import PatientRequest from "./patientRequest";
-import PatientHospital from './patinetHospital';
+// import PatientHospital from './patinetHospital';
 import AssignedHospitalRequests from './patientAssignedRequests';
 
 const Appointments: React.FC = () => {
@@ -15,8 +15,8 @@ const Appointments: React.FC = () => {
         return <PatientRequest />;
       case 'History':
         return <AssignedHospitalRequests />;
-      case 'Hospital':
-        return <PatientHospital/>;
+      // case 'Hospital':
+      //   return <PatientHospital/>;
       default:
         return null;
     }
@@ -42,12 +42,12 @@ const Appointments: React.FC = () => {
             >
              Assigned Requests
             </button>
-            <button
+            {/* <button
               className={`text-lg font-bold ${selectedTab === 'Hospital' ? 'text-blue-500 border-b-2 border-blue-500' : ''}`}
               onClick={() => setSelectedTab('Hospital')}
             >
               Hospital
-            </button>
+            </button> */}
         </div>
         </div>
       </div>

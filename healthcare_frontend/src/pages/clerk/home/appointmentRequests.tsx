@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect, ChangeEvent } from 'react';
 import Navbar from '../../../components/common/navbar';
 import Pagination from '../../../components/common/pagination';
@@ -39,7 +40,7 @@ const AppointmentRequests: React.FC = () => {
         patientFullName: request.patientFullName || 'Unknown Patient',
         id: request.id ?? index // Ensure each request has a unique id
       }));
-      setAppointmentRequests(requests);
+      setAppointmentRequests(requests.reverse());
     }
   }, []);
 
@@ -61,13 +62,29 @@ const AppointmentRequests: React.FC = () => {
   };
 
   const handleDecline = (id: number) => {
-    const updatedRequests = appointmentRequests.filter(request => request.id !== id);
+    const updatedRequests = appointmentRequests.map(request => {
+      if (request.id === id) {
+        // Update status to 'cancelled'
+        request.status = 'cancelled';
+        // Update status in localStorage
+        const pendingRequests = JSON.parse(localStorage.getItem('pendingRequests') || '[]');
+        const updatedPendingRequests = pendingRequests.map((pendingRequest: any) =>
+          pendingRequest.id === id ? { ...pendingRequest, status: 'cancelled' } : pendingRequest
+        );
+        localStorage.setItem('pendingRequests', JSON.stringify(updatedPendingRequests));
+      }
+      return request;
+    });
     setAppointmentRequests(updatedRequests);
-    localStorage.setItem('pendingRequests', JSON.stringify(updatedRequests));
   };
-
+  
   const handleAssign = (doctorId: number, timeSlot: string) => {
     if (selectedRequest) {
+      if (selectedRequest.status === 'cancelled') {
+        alert('This request has been cancelled and cannot be reassigned.');
+        return;
+      }
+  
       const assignedRequest = {
         ...selectedRequest,
         status: 'assigned',
@@ -96,7 +113,6 @@ const AppointmentRequests: React.FC = () => {
       localStorage.setItem('assignedHospitalRequests', JSON.stringify(assignedHospitalRequests));
     }
   };
-  
   
 
   const filteredRequests = appointmentRequests.filter((request) =>

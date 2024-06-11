@@ -14,7 +14,7 @@ export interface Hospital {
 }
 const hospitalTable = [
   {
-      "hospitalId": 1,
+      "hospitalId": 0,
       "hospitalFullName": "Springfield General Hospital",
       "password": "$2b$10$abcd1234efgh5678ijkl90mnopqrstuvwx1234yzabcd5678efghijkl90",
       "email": "contact@springfieldgeneral.com",
@@ -28,7 +28,7 @@ const hospitalTable = [
       "role": "hospital"
   },
   {
-      "hospitalId": 2,
+      "hospitalId": 1,
       "hospitalFullName": "Metropolis Health Center",
       "password": "$2b$10$ijkl1234mnop5678qrst90uvwx1234yzabcd5678efghijkl90abcd1234",
       "email": "info@metropolishealth.com",
@@ -42,7 +42,7 @@ const hospitalTable = [
       "role": "hospital"
   },
   {
-      "hospitalId": 3,
+      "hospitalId": 2,
       "hospitalFullName": "Sunnyvale Medical Center",
       "password": "$2b$10$qrst1234uvwx5678yzab90cd1234efghijkl90mnop5678efghijkl90",
       "email": "support@sunnyvalemedical.com",
@@ -56,7 +56,7 @@ const hospitalTable = [
       "role": "hospital"
   },
   {
-      "hospitalId": 4,
+      "hospitalId": 3,
       "hospitalFullName": "Riverside Hospital",
       "password": "$2b$10$mnop1234qrst5678uvwx90abcd1234efghijkl90efghijkl90mnopqrst",
       "email": "hello@riversidehospital.com",
@@ -70,10 +70,10 @@ const hospitalTable = [
       "role": "hospital"
   },
   {
-      "hospitalId": 5,
+      "hospitalId": 4,
       "hospitalFullName": "Big City Hospital",
       "password": "$2b$10$uvwx1234yzab5678cdef90ghijkl90mnopqrst1234efghijkl90abcd56",
-      "email": "care@bigcityhospital.com",
+      "email": "bigcity@bigcityhospital.com",
       "phoneNumber": "5678901234",
       "rating": 3.6,
       "area": "Central",
@@ -84,10 +84,10 @@ const hospitalTable = [
       "role": "hospital"
   },
   {
-      "hospitalId": 6,
+      "hospitalId": 5,
       "hospitalFullName": "dental Hospital",
       "password": "$2b$10$uvwx1234yzab5678cdef90ghijkl90mnopqrst1234efghijkl90abcd56",
-      "email": "care@dentalhospital.com",
+      "email": "dental@dentalhospital.com",
       "phoneNumber": "539301234",
       "rating": 4.2,
       "area": "Left",
@@ -96,7 +96,21 @@ const hospitalTable = [
       "speciality": "Dental",
       "imageUrl": "https://example.com/images/hospital.jpg",
       "role": "hospital"
-  }
+  },
+  {
+      "hospitalId": 6,
+      "hospitalFullName": "General Hospital",
+      "password": "$2b$10$uvwx1234yzab5678cdef90ghijkl90mnopqrst1234efghijkl90abcd56",
+      "email": "general@dentalhospital.com",
+      "phoneNumber": "847301234",
+      "rating": 4.2,
+      "area": "there",
+      "city": "bolo",
+      "certification": "https://example.com/certifications/big_city_hospital.pdf",
+      "speciality": "General",
+      "imageUrl": "https://example.com/images/hospital.jpg",
+      "role": "hospital"
+  },
 ];
 
 export default hospitalTable;

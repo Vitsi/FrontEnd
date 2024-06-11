@@ -3,9 +3,8 @@ import Navbar from '../../../components/common/navbar';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
+import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import { EventInput } from '@fullcalendar/core';
-import ClerkSidebar from '../../../components/sidebar/clerkSidebar';
 
 interface Doctor {
   id: number;
@@ -68,7 +67,6 @@ const ClerkCalendar: React.FC<ClerkCalendarProps> = ({ requestDate, onDoctorSele
   return (
     <>
       <Navbar isLoggedIn={true} />
-      <ClerkSidebar />
       <div className="p-5 sm:ml-64 md:p-3">
         <div className="flex justify-between">
           <h1 className="text-2xl font-bold mb-4">Doctor Calendar</h1>

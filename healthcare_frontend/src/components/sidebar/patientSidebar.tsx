@@ -13,7 +13,7 @@ const PatientSidebar : React.FC = () => {
         setIsSidebarOpen((prev) => !prev);
    }
     return(
-        <> 
+        <div className="Sidebar"> 
                <button id="patient-sidebar-toggle" 
                   onClick={toggleSidebar}
                   aria-controls="patient-sidebar"
@@ -94,7 +94,7 @@ const PatientSidebar : React.FC = () => {
                   </div>
                )}
             </aside>
-         </>
+         </div>
     )
 }
 
