@@ -3,8 +3,8 @@ import Navbar from "../../../components/common/navbar";
 import PatientSidebar from "../../../components/sidebar/patientSidebar";
 import SearchBar from "../../../components/common/searchBar";
 import PatientRequest from "./patientRequest";
-import PatientHistory from "./patientHistory";
 import PatientHospital from './patinetHospital';
+import AssignedHospitalRequests from './patientAssignedRequests';
 
 const Appointments: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState('Requests');
@@ -14,7 +14,7 @@ const Appointments: React.FC = () => {
       case 'Requests':
         return <PatientRequest />;
       case 'History':
-        return <PatientHistory />;
+        return <AssignedHospitalRequests />;
       case 'Hospital':
         return <PatientHospital/>;
       default:
@@ -40,7 +40,7 @@ const Appointments: React.FC = () => {
               className={`text-lg font-bold ${selectedTab === 'History' ? 'text-blue-500 border-b-2 border-blue-500' : ''}`}
               onClick={() => setSelectedTab('History')}
             >
-              History
+             Assigned Requests
             </button>
             <button
               className={`text-lg font-bold ${selectedTab === 'Hospital' ? 'text-blue-500 border-b-2 border-blue-500' : ''}`}

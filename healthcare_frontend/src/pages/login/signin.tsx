@@ -29,16 +29,25 @@ const Signin: React.FC = () => {
         setError(null);
 
         try {
-            //  // Password validation
-            //  if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(formData.password)) {
-            //     throw new Error("Password must be at least 8 characters long and contain at least one letter and one number");
-            // }
+            const response = await AuthService.login(formData.email, formData.password);
+            const { role } = response;
 
-            // Log the email when form is submitted
-            console.log("Email:", formData.email);
-            await AuthService.login(formData.email, formData.password);
-            console.log("Login successful");
-            navigate("/");
+            // Store role in localStorage for role-based navigation
+            localStorage.setItem("role", role);
+
+            console.log("Login successful, role:", role);
+
+            if (role === "patient") {
+                navigate("/patient-home");
+            } else if (role === "clerk") {
+                navigate("/clerk-home");
+            } else if (role === "doctor") {
+                navigate("/doctor-home");
+            } else if (role === "lab") {
+                navigate("/labTech-home");
+            } else if (role === "healthcare-provider") {
+                navigate("/hcp-home");
+            }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             setError(error.message);

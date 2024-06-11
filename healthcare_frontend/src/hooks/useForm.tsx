@@ -3,8 +3,13 @@
 import { useState } from 'react';
 
 interface FormData {
+  labTechFullName?: string;
+  labTechStaffId? :string;
   clerkFullName?: string;
+  clerkStaffId? :string;
   doctorFullName?: string;
+  doctorId? :string;
+  specialization? : string;
   phoneNumber: string;
   dateOfBirth: string;
   emergencyContacts: string;

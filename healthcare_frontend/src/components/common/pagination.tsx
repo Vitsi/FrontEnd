@@ -25,7 +25,7 @@ const Pagination: React.FC<PaginationProps> = ({
       paginationButtons.push(
         <li key={i}>
           <button
-            className={`rounded-full px-4 py-2 ${currentPage === i ? 'bg-blue-500 text-white' : 'hover:bg-blue hover:text-gray-600 transition duration-300 ease-in-out'}`}
+            className={`rounded-full px-4 py-2 ${currentPage === i ? 'bg-blue-600 text-white' : 'hover:bg-blue-200 hover:text-blue-600 transition duration-300 ease-in-out'}`}
             onClick={() => onPageChange(i)}
           >
             {i}

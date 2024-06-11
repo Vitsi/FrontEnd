@@ -6,6 +6,8 @@ diasyui
 tailwindcss
 heroicons/react
 react-icons
+@fullcalendar/daygrid
+
 
 state mananegment
 redux

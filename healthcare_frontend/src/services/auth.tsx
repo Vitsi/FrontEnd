@@ -1,16 +1,34 @@
 import { register } from "module";
 
-const registeredUsers: string[] = []; // Array to store registered emails
+const registeredUsers: string[] = [];
+
+interface FormData {
+  email: string;
+  password: string;
+}
+
+interface LoginResponse {
+  accessToken: string;
+  role: string;
+}
 
 // Simulating authentication service
 const AuthService = {
     login: (email: string, password: string) => {
-      // Simulating API call to login user
-      return new Promise<{ accessToken: string }>((resolve, reject) => {
+    // Simulating API call to login user
+    return new Promise<LoginResponse>((resolve, reject) => {
         setTimeout(() => {
-          // Simulating successful login
-          if (email === "example@example.com" && password === "password123") {
-            resolve({ accessToken: "mock-access-token" });
+          // Simulating successful login with roles
+          if (email === "patient@example.com" && password === "password123") {
+            resolve({ accessToken: "mock-access-token", role: "patient" });
+          } else if (email === "clerk@example.com" && password === "password123") {
+            resolve({ accessToken: "mock-access-token", role: "clerk" });
+          } else if (email === "doctor@example.com" && password === "password123") {
+            resolve({ accessToken: "mock-access-token", role: "doctor" });
+          } else if (email === "hcp@example.com" && password === "password123") {
+            resolve({ accessToken: "mock-access-token", role: "hcp" });
+          } else if (email === "labTech@example.com" && password === "password123") {
+            resolve({ accessToken: "mock-access-token", role: "labTech" });
           } else {
             reject(new Error("Incorrect email or password"));
           }
@@ -52,5 +70,7 @@ const AuthService = {
     getUserProfile: () => {
     },
   };
+ 
 
   export default AuthService;
+

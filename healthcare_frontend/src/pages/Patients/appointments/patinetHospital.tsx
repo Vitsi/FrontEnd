@@ -33,7 +33,7 @@ const PatientHospital: React.FC = () => {
 
         for (let i = startIndex; i < endIndex; i++) {
             const hospitalData = {
-                name: `Hospital ${i}`,
+                hospitalFullName: `Hospital ${i}`,
                 city: `City ${i}`,
                 area: `Area ${i}`,
                 rating: 4.5, 
@@ -43,13 +43,12 @@ const PatientHospital: React.FC = () => {
 
             hospitalCards.push(
                 <HospitalCard
-                    key={i}
-                    showButtons={true}
-                    isPending= {false}
-                    phoneNumber='09-00-00-00-00'
-                    appointmentTime= 'Mon-Jul-03 at 3:00'
-                    {...hospitalData}
-                />
+                key={i}
+                showButtons={true}
+                isPending={false}
+                phoneNumber='09-00-00-00-00'
+                appointmentTime='Mon-Jul-03 at 3:00'
+                {...hospitalData}                />
             );
         }
 

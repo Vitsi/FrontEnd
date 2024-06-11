@@ -1,107 +1,81 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react';
 import HospitalCard from "../../../components/cards/hospitalCard";
 import LoadingSpinner from "../../../components/common/loadingSpinner";
-import { fetchTotalCards } from '../../../services/hospitalCardsFetch';
-import img from '../../../assets/test 3.jpg';
-
+import Pagination from '../../../components/common/pagination';
 
 const PatientRequest: React.FC = () => {
+    const [requests, setRequests] = useState<any[]>([]);
+    const [loading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [totalCards, setTotalCards] = useState(0);
-    const [loading, setLoading] = useState(false);
-    const cardsPerPage = 4;
-
-    const fetchTotalCardsData = async (page: number) => {
-        setLoading(true);
-        try {
-            const total = await fetchTotalCards(page);
-            setTotalCards(total);
-        } catch (error) {
-            console.error('Error fetching total cards:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
+    const [cardsPerPage] = useState(4);
 
     useEffect(() => {
-        fetchTotalCardsData(currentPage);
-    }, [currentPage]); // Trigger fetchTotalCards when currentPage changes
+        const pendingRequests = localStorage.getItem('pendingRequests');
+        if (pendingRequests) {
+            let requestsData = JSON.parse(pendingRequests);
+            requestsData = requestsData.map((request: any) => ({
+                ...request,
+                patientFullName: request.patientFullName || 'Default Patient',
+            }));
+            setRequests(requestsData);
+        }
+    }, []);
+
+    const cancelAppointment = (index: number) => {
+        const updatedRequests = [...requests];
+        updatedRequests.splice(index, 1);
+        setRequests(updatedRequests);
+        localStorage.setItem('pendingRequests', JSON.stringify(updatedRequests));
+    };
+
+    const indexOfLastCard = currentPage * cardsPerPage;
+    const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+    const currentCards = requests.slice(indexOfFirstCard, indexOfLastCard);
 
     const renderHospitalCards = () => {
-        const startIndex = (currentPage - 1) * cardsPerPage;
-        const endIndex = Math.min(startIndex + cardsPerPage, totalCards);
-        const hospitalCards = [];
-
-        for (let i = startIndex; i < endIndex; i++) {
-            const hospitalData = {
-                name: `Hospital ${i}`,
-                city: `City ${i}`,
-                area: `Area ${i}`,
-                rating: 4.5, 
-                imageUrl: img,
-                speciality: `Speciality of hospital ${i}`, 
-            };
-
-            hospitalCards.push(
-                <HospitalCard
-                    key={i}
-                    showButtons={true}
-                    isPending={true}
-                    phoneNumber='09-00-00-00-00'
-                    {...hospitalData}
-                />
-            );
-        }
-
-        return hospitalCards;
+        return currentCards.map((request, index) => (
+            <HospitalCard
+                key={index}
+                hospitalFullName={request.hospital.name}
+                city={request.hospital.city}
+                area={request.hospital.area}
+                rating={request.hospital.rating}
+                imageUrl={request.hospital.imageUrl}
+                speciality={request.hospital.speciality}
+                showButtons={true}
+                isPending={true}
+                appointmentTime={request.date}
+                phoneNumber={'+251-911-2345'}
+                onCancelAppointment={() => cancelAppointment(index)} 
+            />
+        ));
     };
 
     const handlePageChange = (pageNumber: number) => {
         setCurrentPage(pageNumber);
     };
 
-    const renderPaginationButtons = () => {
-        const numPages = Math.ceil(totalCards / cardsPerPage);
-        const maxButtonsToShow = numPages <= 5 ? numPages : 5; // Maximum buttons to show
-        const startPage = Math.max(1, currentPage - Math.floor(maxButtonsToShow / 2));
-        const endPage = Math.min(startPage + maxButtonsToShow - 1, numPages);
-        const paginationButtons = [];
-
-        for (let i = startPage; i <= endPage; i++) {
-            paginationButtons.push(
-                <button
-                    key={i}
-                    className={`rounded-full px-4 py-2 ${currentPage === i ? 'bg-blue-500 text-white' : 'hover:bg-blue hover:text-gray-600 transition duration-300 ease-in-out'}`}
-                    onClick={() => handlePageChange(i)}
-                >
-                    {i}
-                </button>
-            );
-        }
-
-        return paginationButtons;
-    };
-  
     return (
         <>
-            <section >
+            <section>
                 <div className="p-5 sm:ml-64">
-                    <div className="grid gap-4 md:grid-cols-1 ">
-                        {/* Render hospital cards based on current page */}
+                    <div className="grid gap-4 md:grid-cols-1">
                         {renderHospitalCards()}
                     </div>
                 </div>
             </section>
-             {/* Pagination */}
-             <div className="pagination grid place-items-center">
-                <div className="md:ml-48 sm:ml-64 sm:pl-4 sm:pt-4">
-                    <div className="join">
-                        {renderPaginationButtons()}
-                    </div>
-                </div>
+            <div className="sm:ml-48">
+                <Pagination
+                    currentPage={currentPage}
+                    totalCards={requests.length}
+                    onPageChange={handlePageChange}
+                    cardsPerPage={cardsPerPage}
+                />
             </div>
-            {loading && <LoadingSpinner />} 
+            {loading && <LoadingSpinner />}
         </>
     );
-}
+};
+
 export default PatientRequest;

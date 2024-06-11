@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import Home from './pages/home';
 import SignupPatients from './pages/login/signupPatients';
 import Signin from './pages/login/signin';
@@ -19,9 +21,20 @@ import DoctorAccount from './pages/doctor/account/doctorAccount';
 import DoctorFeedback from './pages/doctor/feedback/doctorFeedback';
 import ClerkHome from './pages/clerk/home/clerkHome';
 import ClerkAccount from './pages/clerk/account/clerkAccount';
+import ClerkFeedback from './pages/clerk/feedback/clrekFeedback';
+import PatientRequest from './pages/Patients/appointments/patientRequest';
+import LabTechFeedback from './pages/labTech/feedback/clabTechFeedback';
+import LabTechAccount from './pages/labTech/account/labTechAccount';
+import LabTechHome from './pages/labTech/home/labTechHome';
+import AdminHome from './pages/admin/home/adminHome';
+import AdminAccount from './pages/admin/account/adminAccount';
+import AdminFeedback from './pages/admin/feedbak/adminFeedback';
+import AdminHospitals from './pages/admin/hospitals/adminHospitals';
+import AdminPatients from './pages/admin/patients/adminPatients';
 
 const App = () => {
   return (
+    <Provider store={store}>
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -32,6 +45,7 @@ const App = () => {
       <Routes>
         <Route path="/patient-home" element={<PatientHome/>} />
         <Route path="/patient-appointments" element={<Appointments/>} />
+        <Route path="/patient-requests" element={<PatientRequest/>} />
         <Route path="/patient-medicalRecords" element={<MedicalRecords/>} />
         <Route path="/patient-account" element={<PatientAccount/>} />
         <Route path="/feedback" element={<Feedback/>} />
@@ -51,12 +65,23 @@ const App = () => {
       </Routes>
       <Routes>
         <Route path="/clerk-home" element={<ClerkHome/>} />
-         {/* <Route path="/doctor-calendar" element={<DoctorCalandar/>} /> */}
         <Route path="/clerk-account" element={<ClerkAccount/>} />
-       {/* <Route path="/doctor-feedback" element={<DoctorFeedback/>} />  */}
+        <Route path="/clerk-feedback" element={<ClerkFeedback/>} /> 
+      </Routes>
+      <Routes>
+        <Route path="/labTech-home" element={<LabTechHome/>} />
+        <Route path="/labTech-account" element={<LabTechAccount/>} />
+        <Route path="/labTech-feedback" element={<LabTechFeedback/>} /> 
+      </Routes>
+      <Routes>
+        <Route path="/admin-home" element={<AdminHome/>} />
+        <Route path="/admin-hospitals" element={<AdminHospitals/>} />
+        <Route path="/admin-patients" element={<AdminPatients/>} />
+        <Route path="/admin-account" element={<AdminAccount/>} />
+        <Route path="/admin-feedback" element={<AdminFeedback/>} />
       </Routes>
     </Router>
-  
+    </Provider>
   );
 };
 

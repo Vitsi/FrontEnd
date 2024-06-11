@@ -6,7 +6,7 @@ import { MdOutlineFeedback} from "react-icons/md";
 import { RiCloseFill, RiMenu2Fill } from "react-icons/ri";
 import { VscAccount } from "react-icons/vsc";
 
-const ClerkSidebar : React.FC = () => {
+const LabTechSidebar : React.FC = () => {
    const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
    const toggleSidebar = () => {
@@ -14,55 +14,55 @@ const ClerkSidebar : React.FC = () => {
    }
     return(
         <> 
-        <button id="Clerk-sidebar-toggle" 
+        <button id="LabTech-sidebar-toggle" 
                   onClick={toggleSidebar}
-                  aria-controls="Clerk-sidebar"
+                  aria-controls="LabTech-sidebar"
                   type="button" 
                   className="inline-flex mt-20
                    items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                   <RiMenu2Fill className="h-6 w-6 mr-1" aria-hidden="true" />
                </button>        
-            <aside id="Clerk-sidebar" 
+            <aside id="LabTech-sidebar" 
                className={`fixed
                 top-0 left-0 z-40 w-64 h-screen transition-transform ${
                   isSidebarOpen ? "translate-x-0" : "-translate-x-full"
                } sm:translate-x-0 pt-20`}         
-               aria-label="Clerk-sidebar">
+               aria-label="LabTech-sidebar">
                <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
                   <ul className="space-y-2 font-medium">
                      <li>
-                        <a href="/clerk-home" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a href="/labTech-home" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                            <GoHome className="h-6 w-6 mr-1" aria-hidden="true" />
                            <span className="ms-3">Home</span>
                         </a>
                      </li>
                      {/* <li>
-                    <a href="/clerk-labTest-requests" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <a href="/LabTech-labTest-requests" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <GrDocumentTest className="h-6 w-6 mr-1" aria-hidden="true" />
                         <span className="flex-1 ms-3 whitespace-nowrap">Lab Test Requests</span>
                     </a>
                     </li>
                      <li>
-                    <a href="/clerk-history" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <a href="/labTech-history" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <GoHistory className="h-6 w-6 mr-1" aria-hidden="true" />
                         <span className="flex-1 ms-3 whitespace-nowrap">History</span>
                     </a>
                     </li> */}
                      <li>
-                        <a href="/clerk-notifications" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a href="/labTech-notifications" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                            <GoBell className="h-6 w-6 mr-1" aria-hidden="true" />
                            <span className="flex-1 ms-3 whitespace-nowrap">Notification</span>
                            <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
                         </a>
                      </li>
                      <li>
-                        <a href="/clerk-account" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a href="/labTech-account" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                            <VscAccount className="h-6 w-6 mr-1" aria-hidden="true" />
                            <span className="flex-1 ms-3 whitespace-nowrap">Account</span>
                         </a>
                      </li>
                      <li>
-                        <a href="/clerk-feedback" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a href="/labTech-feedback" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                            <MdOutlineFeedback className="h-6 w-6 mr-1" aria-hidden="true" />
                            <span className="flex-1 ms-3 whitespace-nowrap">Feedback</span>
                         </a>
@@ -98,4 +98,4 @@ const ClerkSidebar : React.FC = () => {
     )
 }
 
-export default ClerkSidebar;
+export default LabTechSidebar;

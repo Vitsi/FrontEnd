@@ -10,13 +10,6 @@ const PatientsTab: React.FC = () => {
     { image: 'https://via.placeholder.com/150', name: 'Jane Smith', age: 35, recordNumber: '67890', appointmentDate: '2023-12-01' },
     { image: 'https://via.placeholder.com/150', name: 'new name', age: 42, recordNumber: '1345', appointmentDate: '2024-12-01' },
     { image: 'https://via.placeholder.com/150', name: 'name 3', age: 15, recordNumber: '6790', appointmentDate: '2023-09-01' },
-    { image: 'https://via.placeholder.com/150', name: 'jiol ja', age: 32, recordNumber: '1234', appointmentDate: '2024-06-01' },
-    { image: 'https://via.placeholder.com/150', name: '2 ahkd', age: 22, recordNumber: '690', appointmentDate: '2023-09-01' },
-    { image: 'https://via.placeholder.com/150', name: 'anka jjd j', age: 32, recordNumber: '12w45', appointmentDate: '2024-06-01' },
-    { image: 'https://via.placeholder.com/150', name: 'akjdhf akj', age: 25, recordNumber: '67wq90', appointmentDate: '2023-09-01' },
-    { image: 'https://via.placeholder.com/150', name: 'ss skk', age: 40, recordNumber: '12q5', appointmentDate: '2024-06-01' },
-    { image: 'https://via.placeholder.com/150', name: 'Jknlk nj', age: 15, recordNumber: '67qq90', appointmentDate: '2023-09-01' },
-    { image: 'https://via.placeholder.com/150', name: 'sk sje', age: 20, recordNumber: '1qq45', appointmentDate: '2024-06-01' },
     { image: 'https://via.placeholder.com/150', name: 'Jaj nth', age: 23, recordNumber: '67r0', appointmentDate: '2023-09-01' },
   ];
 
