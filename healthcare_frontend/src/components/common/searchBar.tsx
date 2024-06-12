@@ -1,24 +1,35 @@
+import React from 'react';
 import { IoIosSearch } from "react-icons/io";
 
 const SearchBar: React.FC = () => {
     return (
-        <>
-        <section className="pt-4">
-            <form id='search-bar'
-             action="onSubmit" 
-             className="md:ml-48 sm:ml-64 sm:pl-4 sm:pt-4 sm:mt-14 md:mt-24 lg-14">
-                <div className="flex items-center px-2 py-3 rounded-md border-2 border-blue-500 overflow-hidden max-w-80 mx-auto font-[sans-serif]">
-                    <IoIosSearch className="h-5 w-5 mr-1 text-gray-500" />
+        <section className="sm:pt-10">
+            <form 
+                id="search-bar"
+                action="onSubmit" 
+                className="relative
+                md:ml-48 sm:ml-64 
+                sm:pl-4 sm:pt-4 sm:mt-14 
+                 lg:mt-14
+                ">
+                <div className="flex 
+                items-center bg-white 
+                border border-gray-300 rounded-full shadow-lg 
+                overflow-hidden max-w-sm mx-auto">
                     <input 
-                    type="search" 
-                    placeholder="Search Here..." 
-                    required
-                    className="w-full outline-none bg-transparent text-gray-600 text-sm" />
-                    <button id='search-btn' type="submit" className="ml-2 px-2 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none">Search</button>
+                        type="text"
+                        className="w-full 
+                        py-3 px-6 leading-tight
+                         focus:outline-none text-gray-700 text-lg"
+                        placeholder="Search for hospitals, doctors, services..."
+                    />
+                    <button type="submit" 
+                    className="p-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition duration-300 ">
+                        <IoIosSearch className="h-6 w-6" />
+                    </button>
                 </div>
             </form>
         </section>
-        </>
     );
 };
 

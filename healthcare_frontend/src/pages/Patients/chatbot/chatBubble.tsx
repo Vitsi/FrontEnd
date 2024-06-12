@@ -6,8 +6,8 @@ import logo from '../../../assets/images/logos/logowhiteleaf.png';
 
 const ChatBubble: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<{ sender: string, text: string, time: string }[]>([
-    { sender: 'bot', text: 'How can I be of service?', time: new Date().toLocaleTimeString() }
+  const [messages, setMessages] = useState<{ botId: number, patientQuestion: string, chatbotAnswer: string, time: string }[]>([
+    { botId: 1, patientQuestion: '', chatbotAnswer: 'How can I be of service?', time: new Date().toLocaleTimeString() }
   ]);
   const [userInput, setUserInput] = useState('');
   const chatBubbleRef = useRef<HTMLDivElement>(null);
@@ -15,12 +15,13 @@ const ChatBubble: React.FC = () => {
 
   const handleSendMessage = () => {
     if (userInput.trim()) {
-      setMessages([...messages, { sender: 'user', text: userInput, time: new Date().toLocaleTimeString() }]);
+      const newMessage = { botId: 0, patientQuestion: userInput, chatbotAnswer: '', time: new Date().toLocaleTimeString() };
+      setMessages([...messages, newMessage]);
       setUserInput('');
       setIsTyping(true);
       setTimeout(() => {
-        const botResponse = 'This is a bot response'; 
-        setMessages(messages => [...messages, { sender: 'bot', text: botResponse, time: new Date().toLocaleTimeString() }]);
+        const botResponse = 'This is a bot response';
+        setMessages(messages => [...messages, { botId: 1, patientQuestion: '', chatbotAnswer: botResponse, time: new Date().toLocaleTimeString() }]);
         setIsTyping(false);
       }, 2000); // simulate typing delay
     }
@@ -44,27 +45,27 @@ const ChatBubble: React.FC = () => {
   }, [isOpen]);
 
   return (
-    <div className="fixed bottom-4 right-4" ref={chatBubbleRef}>
+    <div className="fixed z-50 bottom-4 right-4" ref={chatBubbleRef}>
       {isOpen ? (
         <div className="w-96 h-96 bg-white shadow-lg rounded-lg flex flex-col">
-          <div className="flex items-center justify-between p-4 bg-blue-700  border-blue-300  text-white rounded-t-lg">
+          <div className="flex items-center justify-between p-4 bg-blue-700 border-blue-300 text-white rounded-t-lg">
             <span>
-              <img src={logo} className="h- w-24 " alt="UNICARE" />
+              <img src={logo} className="h- w-24" alt="UNICARE" />
             </span>
             AI Chat Bot
-            <BsRobot className="h-7 w-7 "  />
+            <BsRobot className="h-7 w-7" />
           </div>
           <div className="flex-1 p-4 overflow-y-auto">
             {messages.map((msg, index) => (
-              <div key={index} className={`mb-2 ${msg.sender === 'bot' ? 'flex items-end gap-2' : 'flex items-end flex-row-reverse gap-2'}`}>
-                {msg.sender === 'bot' && (
+              <div key={index} className={`mb-2 ${msg.botId === 1 ? 'flex items-end gap-2' : 'flex items-end flex-row-reverse gap-2'}`}>
+                {msg.botId === 1 && (
                   <img className="size-8 rounded-full object-cover" src={logo} alt="botavatar" />
                 )}
-                <div className={`flex max-w-[70%] flex-col gap-2 rounded${msg.sender === 'bot' ? 
+                <div className={`flex max-w-[70%] flex-col gap-2 rounded${msg.botId === 1 ? 
                 '-r-xl rounded-tl-xl bg-slate-100 text-black' : 
                 '-l-xl rounded-tr-xl bg-blue-700 text-white'} 
                 p-4 text-sm md:max-w-[60%]`}>
-                  {msg.text}
+                  {msg.botId === 1 ? msg.chatbotAnswer : msg.patientQuestion}
                   <span className="ml-auto text-xs">{msg.time}</span>
                 </div>
               </div>
