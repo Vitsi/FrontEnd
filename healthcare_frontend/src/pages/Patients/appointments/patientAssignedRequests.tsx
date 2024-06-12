@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import HospitalCard from '../../../components/cards/hospitalCard';
 import Pagination from '../../../components/common/pagination';
-// import { MdDelete } from 'react-icons/md';
+import { MdDelete } from 'react-icons/md';
 
 const AssignedHospitalRequests: React.FC = () => {
   const [assignedRequests, setAssignedRequests] = useState<any[]>([]);
@@ -34,14 +34,14 @@ const AssignedHospitalRequests: React.FC = () => {
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
-  // const deleteCanceledAppointments = () => {
-  //   const updatedRequests = assignedRequests.filter(request => request.status !== 'cancelled');
-  //   setAssignedRequests(updatedRequests);
-  //   localStorage.setItem('assignedHospitalRequests', JSON.stringify(updatedRequests)); // Update localStorage
-  //   const pendingRequests = JSON.parse(localStorage.getItem('pendingRequests') || '[]');
-  //   const updatedPendingRequests = pendingRequests.filter((request: { status: string; }) => request.status !== 'cancelled');
-  //   localStorage.setItem('pendingRequests', JSON.stringify(updatedPendingRequests)); // Update pendingRequests in localStorage
-  // };
+  const deleteCanceledAppointments = () => {
+    const updatedRequests = assignedRequests.filter(request => request.status !== 'cancelled');
+    setAssignedRequests(updatedRequests);
+    localStorage.setItem('assignedHospitalRequests', JSON.stringify(updatedRequests)); // Update localStorage
+    const pendingRequests = JSON.parse(localStorage.getItem('pendingRequests') || '[]');
+    const updatedPendingRequests = pendingRequests.filter((request: { status: string; }) => request.status !== 'cancelled');
+    localStorage.setItem('pendingRequests', JSON.stringify(updatedPendingRequests)); // Update pendingRequests in localStorage
+  };
   
 
   const renderHospitalCards = () => {
@@ -72,12 +72,13 @@ const AssignedHospitalRequests: React.FC = () => {
       <section>
         <div className="p-5 sm:ml-64">
         
-          {/* <button
-            className="mt-4 p-2 bg-red-500 text-white rounded"
+          <button
+            className="mt-4 p-2 bg-red-500
+             text-white rounded"
             onClick={deleteCanceledAppointments}
           >
-            <MdDelete /> Delete Canceled Appointments
-          </button>  */}
+            <MdDelete /> 
+          </button> 
           <div className="grid gap-4 md:grid-cols-1">
             
             {renderHospitalCards()}</div>

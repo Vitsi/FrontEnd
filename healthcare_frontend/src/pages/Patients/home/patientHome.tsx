@@ -9,6 +9,7 @@ import LoadingSpinner from "../../../components/common/loadingSpinner";
 import Pagination from '../../../components/common/pagination';
 import MakeAppointment from './makeAppointment';
 import hospitalTable, { Hospital } from '../../../dummyData/hospitalTable'; // Adjust the path as needed
+import ChatBubble from '../chatbot/chatBubble';
 
 const PatientHome: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -68,6 +69,7 @@ const PatientHome: React.FC = () => {
             <Navbar isLoggedIn={true} />
             <PatientSidebar />
             <SearchBar />
+            <ChatBubble/>
             <section>
                 {currentPage === 1 && <PatientHero />}
                 <div className="p-5 sm:ml-64">

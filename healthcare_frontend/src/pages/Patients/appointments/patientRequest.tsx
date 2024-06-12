@@ -31,7 +31,10 @@ const PatientRequest: React.FC = () => {
 
     const indexOfLastCard = currentPage * cardsPerPage;
     const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-    const currentCards = requests.slice(indexOfFirstCard, indexOfLastCard);
+    const currentCards = requests
+        .filter(request => request.status === 'pending') // Only include pending requests
+        .slice(indexOfFirstCard, indexOfLastCard)
+        .reverse(); // Reverse the array to display newest requests first
 
     const renderHospitalCards = () => {
         return currentCards.map((request, index) => (
@@ -47,9 +50,9 @@ const PatientRequest: React.FC = () => {
                 isPending={true}
                 appointmentTime={request.date}
                 phoneNumber={'+251-911-2345'}
-                onCancelAppointment={() => cancelAppointment(index)} 
+                onCancelAppointment={() => cancelAppointment(index)}
             />
-        )).reverse();
+        ));
     };
 
     const handlePageChange = (pageNumber: number) => {
@@ -68,7 +71,7 @@ const PatientRequest: React.FC = () => {
             <div className="sm:ml-48">
                 <Pagination
                     currentPage={currentPage}
-                    totalCards={requests.length}
+                    totalCards={requests.filter(request => request.status === 'pending').length} // Only count pending requests
                     onPageChange={handlePageChange}
                     cardsPerPage={cardsPerPage}
                 />

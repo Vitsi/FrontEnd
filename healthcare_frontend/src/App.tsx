@@ -31,6 +31,7 @@ import AdminAccount from './pages/admin/account/adminAccount';
 import AdminFeedback from './pages/admin/feedbak/adminFeedback';
 import AdminHospitals from './pages/admin/hospitals/adminHospitals';
 import AdminPatients from './pages/admin/patients/adminPatients';
+import ChatBot from './pages/Patients/chatbot/chatBot';
 
 const App = () => {
   return (
@@ -49,6 +50,7 @@ const App = () => {
         <Route path="/patient-medicalRecords" element={<MedicalRecords/>} />
         <Route path="/patient-account" element={<PatientAccount/>} />
         <Route path="/feedback" element={<Feedback/>} />
+        <Route path="/chatbot" element={<ChatBot/>} />
       </Routes>
       <Routes>
         <Route path="/hcp-home" element={<HcpHome/>} />
