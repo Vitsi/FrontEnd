@@ -3,19 +3,22 @@
 import { useState } from 'react';
 
 interface FormData {
+  role?: string ;
   labTechFullName?: string;
   labTechStaffId? :string;
   clerkFullName?: string;
   clerkStaffId? :string;
   doctorFullName?: string;
-  doctorId? :string;
+  doctorId? : string;
+  adminFullName?: string;
+  adminId?: string;
   specialization? : string;
-  phoneNumber: string;
-  dateOfBirth: string;
-  emergencyContacts: string;
+  phoneNumber?: string;
+  dateOfBirth?: string;
+  emergencyContacts?: string;
   email: string;
-  area: string;
-  city: string;
+  area?: string;
+  city?: string;
   password: string;
 }
 
