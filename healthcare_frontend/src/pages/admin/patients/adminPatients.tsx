@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../../../components/common/navbar";
 import SearchBar from "../../../components/common/searchBar";
 import AdminLayout from "../notifications/layoutAdmin";
+import Pagination from "../../../components/common/pagination";
 
 interface Patient {
     id: number;
@@ -19,6 +20,8 @@ interface Patient {
 const AdminPatients: React.FC = () => {
     const [patients, setPatients] = useState<Patient[]>([]);
     const [filter, setFilter] = useState<"all" | "banned" | "unbanned">("all");
+    const [currentPage, setCurrentPage] = useState(1);
+    const cardsPerPage = 6;
 
     useEffect(() => {
         // Mock data for patients
@@ -61,7 +64,13 @@ const AdminPatients: React.FC = () => {
     };
 
     const filteredPatients = filter === "all" ? patients : patients.filter(patient => patient.status === filter);
+    const indexOfLastCard = currentPage * cardsPerPage;
+    const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+    const currentPatients = filteredPatients .slice(indexOfFirstCard, indexOfLastCard);
 
+    const handlePageChange = (pageNumber: number) => {
+        setCurrentPage(pageNumber);
+    };
     return (
         <>
             <Navbar isLoggedIn={true} />
@@ -80,10 +89,10 @@ const AdminPatients: React.FC = () => {
                         </select>
                     </div>
                     <div className="grid gap-4 md:grid-cols-2">
-                        {filteredPatients.map(patient => (
+                        {currentPatients.map(patient => (
                             <div key={patient.id} className="p-4 bg-white rounded shadow">
-                                <h3 className="text-lg font-semibold">{patient.patientFullName}</h3>
-                                <p>Email: {patient.email}</p>
+                                <h3 className="text-blue-800 text-lg font-semibold">{patient.patientFullName}</h3>
+                                <p className="">Email: {patient.email}</p>
                                 <p>Phone: {patient.phoneNumber}</p>
                                 <p>Date of Birth: {patient.dateOfBirth}</p>
                                 <p>Emergency Contact: {patient.emergencyContacts}</p>
@@ -111,6 +120,12 @@ const AdminPatients: React.FC = () => {
                             </div>
                         ))}
                     </div>
+                    <Pagination 
+                        currentPage={currentPage} 
+                        totalCards={filteredPatients.length} 
+                        onPageChange={handlePageChange} 
+                        cardsPerPage={cardsPerPage} 
+                    />
                 </div>
             </AdminLayout>
         </>
