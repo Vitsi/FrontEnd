@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../../../components/common/navbar"
-import HcpSidebar from "../../../components/sidebar/hcpSidebar";
+import HcpLayout from "../notifications/layoutHcp";
 
 const HcpFeedback : React.FC = () => {
     const [rating, setRating] = useState<number | null>(null);
@@ -15,7 +15,7 @@ const HcpFeedback : React.FC = () => {
     return(
     <>
       <Navbar isLoggedIn={true} />
-      <HcpSidebar/>
+      <HcpLayout>  
       <section id='feedback'className="">
        <div className="p-5 sm:ml-64">
         <div className="grid gap-4 md:grid-cols-1 md:mt-20 sm:mt-14">
@@ -64,6 +64,7 @@ const HcpFeedback : React.FC = () => {
         </div>
        </div>
       </section>
+      </HcpLayout>
     </>
     )
 }

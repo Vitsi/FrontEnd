@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../../../components/common/navbar"
-import PatientSidebar from "../../../components/sidebar/patientSidebar"
+import Layout from "../notifications/layoutPatients";
 
 const Feedback : React.FC = () => {
     const [rating, setRating] = useState<number | null>(null);
@@ -14,8 +14,9 @@ const Feedback : React.FC = () => {
 
     return(
     <>
+<Layout>
       <Navbar isLoggedIn={true} />
-      <PatientSidebar />
+      
       <section id='feedback'className="">
        <div className="p-5 sm:ml-64">
         <div className="grid gap-4 md:grid-cols-1 md:mt-20 sm:mt-14">
@@ -64,7 +65,9 @@ const Feedback : React.FC = () => {
         </div>
        </div>
       </section>
+      </Layout>
     </>
+
     )
 }
 

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Navbar from "../../../components/common/navbar";
 import SearchBar from "../../../components/common/searchBar";
-import HcpSidebar from "../../../components/sidebar/hcpSidebar";
 import ManageDoctors from "./manageDoctors";
 import ManageClerk from "./manageClrek";
 import ManageLabTechs from "./manageLabTechs";
+import HcpLayout from "../notifications/layoutHcp";
 
 const ManageStaff: React.FC = () => {
     
@@ -26,7 +26,7 @@ const ManageStaff: React.FC = () => {
     return (
     < section className='manage-staff'>
       <Navbar isLoggedIn={true} />
-      <HcpSidebar/>  
+      <HcpLayout>  
       <SearchBar />
       <div className="p-5 sm:ml-64">
         <div className="grid gap-4 md:grid-cols-2">
@@ -59,7 +59,7 @@ const ManageStaff: React.FC = () => {
           {/* </div>
        </div>
       </div>  */}
-     
+      </HcpLayout>  
     </section>
     );
 }

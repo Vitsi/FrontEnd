@@ -10,7 +10,6 @@ import Appointments from './pages/Patients/appointments/appointments';
 import MedicalRecords from './pages/Patients/medicalRecords/medicalRecords';
 import PatientAccount from './pages/Patients/account/parientAccount';
 import Feedback from './pages/Patients/feedback/feedback';
-import HcpHome from './pages/hcp/home/hcpHome';
 import ManageStaff from './pages/hcp/staff/manageStaff';
 import RegisterStaff from './pages/hcp/staff/registerStaff';
 import HcpAccount from './pages/hcp/account/hcpAccount';
@@ -21,7 +20,7 @@ import DoctorAccount from './pages/doctor/account/doctorAccount';
 import DoctorFeedback from './pages/doctor/feedback/doctorFeedback';
 import ClerkHome from './pages/clerk/home/clerkHome';
 import ClerkAccount from './pages/clerk/account/clerkAccount';
-import ClerkFeedback from './pages/clerk/feedback/clrekFeedback';
+import ClerkFeedback from './pages/clerk/feedback/clerkFeedback';
 import PatientRequest from './pages/Patients/appointments/patientRequest';
 import LabTechFeedback from './pages/labTech/feedback/clabTechFeedback';
 import LabTechAccount from './pages/labTech/account/labTechAccount';
@@ -32,57 +31,72 @@ import AdminFeedback from './pages/admin/feedbak/adminFeedback';
 import AdminHospitals from './pages/admin/hospitals/adminHospitals';
 import AdminPatients from './pages/admin/patients/adminPatients';
 import ChatBot from './pages/Patients/chatbot/chatBot';
+import MedicalRecord from './pages/doctor/home/medicalRecord';
+import NotifPatients from './pages/Patients/notifications/notifPatients';
+import NotiflabTechs from './pages/labTech/notifications/notifLabTech';
+import PageNotFound from './components/common/pageNotFound';
+import NotifDoctors from './pages/doctor/notifications/notifDoctor';
+import NotifClerk from './pages/clerk/notifications/notifClerk';
+import NotifHcp from './pages/hcp/notifications/notifHcp';
+import NotifAdmin from './pages/admin/notification/notifAdmin';
+// import DoctorLabTestRequest from './pages/doctor/home/doctorLabTestRequest';
+// import DoctorLabTestResult from './pages/doctor/home/doctorLabTestResult';
+// import { LabTestProvider } from './pages/labTech/home/labContext';
+// import LabTechRequests from './pages/labTech/home/labTechRequests';
 
 const App = () => {
   return (
     <Provider store={store}>
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/signup-patient" element={<SignupPatients />} />
-        <Route path="/signup-hospital" element={<SignupHospitals />} />
-      </Routes>
-      <Routes>
-        <Route path="/patient-home" element={<PatientHome/>} />
-        <Route path="/patient-appointments" element={<Appointments/>} />
-        <Route path="/patient-requests" element={<PatientRequest/>} />
-        <Route path="/patient-medicalRecords" element={<MedicalRecords/>} />
-        <Route path="/patient-account" element={<PatientAccount/>} />
-        <Route path="/feedback" element={<Feedback/>} />
-        <Route path="/chatbot" element={<ChatBot/>} />
-      </Routes>
-      <Routes>
-        <Route path="/hcp-home" element={<HcpHome/>} />
-        <Route path="/hcp-manage-staff" element={<ManageStaff/>} />
-        <Route path="/hcp-register-staff" element={<RegisterStaff/>} />
-        <Route path="/hcp-account" element={<HcpAccount/>} />
-        <Route path="/hcp-feedback" element={<HcpFeedback/>} />
-      </Routes>
-      <Routes>
-        <Route path="/doctor-home" element={<DoctorHome/>} />
-        <Route path="/doctor-calendar" element={<DoctorCalandar/>} />
-        <Route path="/doctor-account" element={<DoctorAccount/>} />
-        <Route path="/doctor-feedback" element={<DoctorFeedback/>} /> 
-      </Routes>
-      <Routes>
-        <Route path="/clerk-home" element={<ClerkHome/>} />
-        <Route path="/clerk-account" element={<ClerkAccount/>} />
-        <Route path="/clerk-feedback" element={<ClerkFeedback/>} /> 
-      </Routes>
-      <Routes>
-        <Route path="/labTech-home" element={<LabTechHome/>} />
-        <Route path="/labTech-account" element={<LabTechAccount/>} />
-        <Route path="/labTech-feedback" element={<LabTechFeedback/>} /> 
-      </Routes>
-      <Routes>
-        <Route path="/admin-home" element={<AdminHome/>} />
-        <Route path="/admin-hospitals" element={<AdminHospitals/>} />
-        <Route path="/admin-patients" element={<AdminPatients/>} />
-        <Route path="/admin-account" element={<AdminAccount/>} />
-        <Route path="/admin-feedback" element={<AdminFeedback/>} />
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/signup-patient" element={<SignupPatients />} />
+          <Route path="/signup-hospital" element={<SignupHospitals />} />
+
+          <Route path="/patient-home" element={<PatientHome />} />
+          <Route path="/patient-appointments" element={<Appointments />} />
+          <Route path="/patient-requests" element={<PatientRequest />} />
+          <Route path="/patient-medicalRecords" element={<MedicalRecords />} />
+          <Route path="/patient-account" element={<PatientAccount />} />
+          <Route path="/patient-notifications" element={<NotifPatients />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/chatbot" element={<ChatBot />} />
+
+          <Route path="/hcp-manage-staff" element={<ManageStaff />} />
+          <Route path="/hcp-register-staff" element={<RegisterStaff />} />
+          <Route path="/hcp-account" element={<HcpAccount />} />
+          <Route path="/hcp-feedback" element={<HcpFeedback />} />
+          <Route path="/hcp-notifications" element={<NotifHcp />} />
+
+          <Route path="/doctor-home" element={<DoctorHome />} />
+          <Route path="/medical-record/:patientId" element={<MedicalRecord patientId={0} patientName={''} patientAge={0} />} />
+          <Route path="/doctor-calendar" element={<DoctorCalandar />} />
+          <Route path="/doctor-account" element={<DoctorAccount />} />
+          <Route path="/doctor-feedback" element={<DoctorFeedback />} />
+          <Route path="/doctor-notifications" element={<NotifDoctors />} />
+
+          <Route path="/clerk-home" element={<ClerkHome />} />
+          <Route path="/clerk-account" element={<ClerkAccount />} />
+          <Route path="/clerk-feedback" element={<ClerkFeedback />} />
+          <Route path="/clerk-notifications" element={<NotifClerk />} />
+
+          <Route path="/labTech-home" element={<LabTechHome />} />
+          <Route path="/labTech-account" element={<LabTechAccount />} />
+          <Route path="/labTech-feedback" element={<LabTechFeedback />} />
+          <Route path="/labTech-notifications" element={<NotiflabTechs />} />
+
+          <Route path="/admin-home" element={<AdminHome />} />
+          <Route path="/admin-hospitals" element={<AdminHospitals />} />
+          <Route path="/admin-patients" element={<AdminPatients />} />
+          <Route path="/admin-account" element={<AdminAccount />} />
+          <Route path="/admin-feedback" element={<AdminFeedback />} />
+          <Route path="/admin-notifications" element={<NotifAdmin/>} />
+
+          {/* Catch-all route for Page Not Found */}
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </Router>
     </Provider>
   );
 };

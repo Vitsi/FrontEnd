@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../../../components/common/navbar"
-import LabTechSidebar from "../../../components/sidebar/labTechSidebar";
+import LabTechLayout from "../notifications/layoutLabTech";
 
 const LabTechFeedback : React.FC = () => {
     const [rating, setRating] = useState<number | null>(null);
@@ -14,8 +14,8 @@ const LabTechFeedback : React.FC = () => {
 
     return(
     <>
-      <Navbar isLoggedIn={true} />
-      <LabTechSidebar/>
+    <LabTechLayout>
+    <Navbar isLoggedIn={true} />
       <section id='feedback'className="">
        <div className="p-5 sm:ml-64">
         <div className="grid gap-4 md:grid-cols-1 md:mt-20 sm:mt-14">
@@ -64,8 +64,9 @@ const LabTechFeedback : React.FC = () => {
         </div>
        </div>
       </section>
+      </LabTechLayout>
     </>
     )
 }
 
-export default LabTechFeedback
+export default LabTechFeedback;

@@ -1,11 +1,13 @@
 import Navbar from "../../../components/common/navbar";
-import AdminSidebar from "../../../components/sidebar/adminSidebar";
+import AdminLayout from "../notification/layoutAdmin";
 
 const AdminHome : React.FC = () => {
     return (
     <>
     <Navbar isLoggedIn={true}/>
-    <AdminSidebar/>
+    <AdminLayout children={undefined}>
+        
+    </AdminLayout>
     </>
     )
 }

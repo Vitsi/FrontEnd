@@ -1,20 +1,20 @@
 import { useState } from "react";
 import Navbar from "../../../components/common/navbar"
 import SearchBar from "../../../components/common/searchBar"
-import DoctorSidebar from "../../../components/sidebar/doctorSidebar"
-import LabRequests from "./labTestRequest";
-import LabTests from "./labTestResult";
 import PatientsTab from "./patientsTab";
+import DoctorLabTestRequest from "./doctorLabTestRequest";
+import DoctorLabTestResult from "./doctorLabTestResult";
+import DoctorLayout from "../notifications/layoutDoctor";
 
 const DoctorHome : React.FC = () => {
     const [selectedTab, setSelectedTab] = useState('PatientsTab');
 
     const renderContent = () => {
         switch (selectedTab) {
-        case ' LabRequests':
-            return < LabRequests />;
-        case ' LabTests':
-            return < LabTests />;
+        case 'LabRequests':
+            return <DoctorLabTestRequest />;
+        case 'LabResults':
+            return <DoctorLabTestResult />;
         case 'PatientsTab':
             return <PatientsTab/>;
         default:
@@ -25,7 +25,7 @@ const DoctorHome : React.FC = () => {
     return (
     < section className='manage-staff'>
       <Navbar isLoggedIn={true} />
-      <DoctorSidebar/>  
+      <DoctorLayout>       
       <SearchBar />
       <div className="p-5 sm:ml-64">
         <div className="grid gap-4 md:grid-cols-2">
@@ -36,15 +36,15 @@ const DoctorHome : React.FC = () => {
             >
               Patients
             </button>
-            {/* <button
-              className={`text-lg font-bold ${selectedTab === ' LabTests' ? 'text-blue-500 border-b-2 border-blue-500' : ''}`}
-              onClick={() => setSelectedTab(' LabTests')}
-            >
-              Lab Test Requests
-            </button> */}
             <button
               className={`text-lg font-bold ${selectedTab === 'LabRequests' ? 'text-blue-500 border-b-2 border-blue-500' : ''}`}
               onClick={() => setSelectedTab('LabRequests')}
+            >
+              Lab Test Requests
+            </button>
+            <button
+              className={`text-lg font-bold ${selectedTab === 'LabResults' ? 'text-blue-500 border-b-2 border-blue-500' : ''}`}
+              onClick={() => setSelectedTab('LabResults')}
             >
               Lab Test Results
             </button>
@@ -58,7 +58,7 @@ const DoctorHome : React.FC = () => {
           {/* </div>
        </div>
       </div>  */}
-     
+      </DoctorLayout> 
     </section>
     );
 }

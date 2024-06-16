@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setProfileImage } from '../../../redux/userSlice';
 import Navbar from '../../../components/common/navbar';
-import PatientSidebar from '../../../components/sidebar/patientSidebar';
 import { VscAccount } from 'react-icons/vsc';
 import { RootState } from '../../../redux/store';
+import Layout from '../notifications/layoutPatients';
 
 // interface FormData {
 //   patientFullName: string;
@@ -57,8 +57,9 @@ const PatientAccount: React.FC = () => {
 
   return (
     <>
+    <Layout>
       <Navbar isLoggedIn={true} />
-      <PatientSidebar />
+      
       <div className="p-5 sm:ml-64">
         <div className="grid gap-4 md:grid-cols-1 md:mt-20 sm:mt-14">
           <form onSubmit={handleSubmit}>
@@ -231,6 +232,7 @@ const PatientAccount: React.FC = () => {
           </div>
         </div>
       )}
+      </Layout>
     </>
   );
 };

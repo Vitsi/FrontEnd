@@ -7,7 +7,11 @@ import { MdOutlineFeedback, MdOutlinePersonalInjury} from "react-icons/md";
 import { RiCloseFill, RiMenu2Fill } from "react-icons/ri";
 import { VscAccount } from "react-icons/vsc";
 
-const AdminSidebar : React.FC = () => {
+interface AdminSidebarProps {
+   notificationCount: number;
+}
+
+const AdminSidebar : React.FC<AdminSidebarProps> = ({notificationCount}) => {
    const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
    const toggleSidebar = () => {
@@ -53,10 +57,12 @@ const AdminSidebar : React.FC = () => {
                     </li>
                      <li>
                         <a href="/admin-notifications" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                           <GoBell className="h-6 w-6 mr-1" aria-hidden="true" />
-                           <span className="flex-1 ms-3 whitespace-nowrap">Notification</span>
-                           <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
-                        </a>
+                        <GoBell className="h-6 w-6 mr-1" aria-hidden="true" />
+                                <span className="flex-1 ms-3 whitespace-nowrap">Notifications</span>
+                                <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
+                                    {notificationCount}
+                                </span>
+                            </a>
                      </li>
                      <li>
                         <a href="/admin-account" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">

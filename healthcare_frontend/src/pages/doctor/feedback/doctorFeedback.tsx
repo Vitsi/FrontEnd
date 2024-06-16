@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../../../components/common/navbar"
-import DoctorSidebar from "../../../components/sidebar/doctorSidebar";
+import DoctorLayout from "../notifications/layoutDoctor";
 
 const DoctorFeedback : React.FC = () => {
     const [rating, setRating] = useState<number | null>(null);
@@ -15,8 +15,8 @@ const DoctorFeedback : React.FC = () => {
     return(
     <>
       <Navbar isLoggedIn={true} />
-      <DoctorSidebar/>
-      <section id='feedback'className="">
+      <DoctorLayout>      
+        <section id='feedback'className="">
        <div className="p-5 sm:ml-64">
         <div className="grid gap-4 md:grid-cols-1 md:mt-20 sm:mt-14">
         <form onSubmit={handleSubmit} className="mt-16 p-4 bg-white shadow rounded">
@@ -64,6 +64,7 @@ const DoctorFeedback : React.FC = () => {
         </div>
        </div>
       </section>
+      </DoctorLayout> 
     </>
     )
 }

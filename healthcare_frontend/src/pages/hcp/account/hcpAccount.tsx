@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../../components/common/navbar"
 import SearchBar from "../../../components/common/searchBar"
-import HcpSidebar from "../../../components/sidebar/hcpSidebar"
 import { setProfileImage } from "../../../redux/userSlice";
 import { VscAccount } from 'react-icons/vsc';
+import HcpLayout from '../notifications/layoutHcp';
 
 const HcpAccount : React.FC = () => {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const HcpAccount : React.FC = () => {
     return (
       <>
       <Navbar isLoggedIn={true} />
-      <HcpSidebar/>  
+      <HcpLayout>  
       <SearchBar />
       <div className="p-5 sm:ml-64">
         <div className="grid gap-4 md:grid-cols-1 md:mt-20 sm:mt-14">
@@ -167,7 +167,8 @@ const HcpAccount : React.FC = () => {
             </div>
           </div>
         </div>        )}
- </>
+        </HcpLayout>  
+      </>
     );
   };
   

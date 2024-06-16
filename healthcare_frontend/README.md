@@ -9,7 +9,9 @@ react-icons
 @fullcalendar/daygrid
 @fullcalendar/react
 toastify
-
+swiper
+pdfjs (doC viewr)
+lotttie
 
 
 state mananegment

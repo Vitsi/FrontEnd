@@ -1,12 +1,17 @@
 import React from "react";
 import { useState } from "react";
-import { GoBell, GoHome } from "react-icons/go";
+import { GoBell} from "react-icons/go";
 import { IoIosLogOut } from "react-icons/io";
 import { MdOutlineFeedback, MdOutlineManageAccounts } from "react-icons/md";
 import { RiCloseFill, RiMenu2Fill } from "react-icons/ri";
 import { VscAccount } from "react-icons/vsc";
 
-const HcpSidebar : React.FC = () => {
+interface HcpSidebarProps {
+   notificationCount: number;
+}
+
+
+const HcpSidebar : React.FC<HcpSidebarProps> = ({notificationCount}) => {
    const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
    const toggleSidebar = () => {
@@ -30,12 +35,12 @@ const HcpSidebar : React.FC = () => {
                aria-label="hcp-sidebar">
                <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
                   <ul className="space-y-2 font-medium">
-                     <li>
+                     {/* <li>
                         <a href="/hcp-home" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                            <GoHome className="h-6 w-6 mr-1" aria-hidden="true" />
                            <span className="ms-3">Home</span>
                         </a>
-                     </li>
+                     </li> */}
                      <li>
                         <a href="/hcp-manage-staff" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                            <MdOutlineManageAccounts className="h-6 w-6 mr-1" aria-hidden="true" />
@@ -44,10 +49,12 @@ const HcpSidebar : React.FC = () => {
                      </li>
                      <li>
                         <a href="/hcp-notifications" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                           <GoBell className="h-6 w-6 mr-1" aria-hidden="true" />
-                           <span className="flex-1 ms-3 whitespace-nowrap">Notification</span>
-                           <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
-                        </a>
+                        <GoBell className="h-6 w-6 mr-1" aria-hidden="true" />
+                                <span className="flex-1 ms-3 whitespace-nowrap">Notifications</span>
+                                <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
+                                    {notificationCount}
+                                </span>
+                        </a>                    
                      </li>
                      <li>
                         <a href="/hcp-account" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">

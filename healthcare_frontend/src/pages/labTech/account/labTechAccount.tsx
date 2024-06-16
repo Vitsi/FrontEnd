@@ -5,7 +5,7 @@ import { RootState } from '../../../redux/store';
 import { useState } from "react";
 import { VscAccount } from "react-icons/vsc";
 import useForm from "../../../hooks/useForm";
-import LabTechSidebar from "../../../components/sidebar/labTechSidebar";
+import LabTechLayout from "../notifications/layoutLabTech";
 
 const initialFormValues = {
     labTechFullName: '',
@@ -66,8 +66,8 @@ const LabTechAccount : React.FC = () => {
   
     return (
       <>
+      <LabTechLayout>
         <Navbar isLoggedIn={true} />
-        <LabTechSidebar/>
         <div className="p-5 sm:ml-64">
           <div className="grid gap-4 md:grid-cols-1 md:mt-20 sm:mt-14">
             <form onSubmit={handleSubmit}>
@@ -253,7 +253,7 @@ const LabTechAccount : React.FC = () => {
             </form>
           </div>
         </div>
-        
+        </LabTechLayout>
       </>
     );
 }

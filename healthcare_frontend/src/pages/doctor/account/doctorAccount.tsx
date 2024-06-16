@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../../components/common/navbar"
-import DoctorSidebar from "../../../components/sidebar/doctorSidebar"
 import { setProfileImage } from "../../../redux/userSlice";
 import { RootState } from '../../../redux/store';
 import { useState } from "react";
 import { VscAccount } from "react-icons/vsc";
 import useForm from "../../../hooks/useForm";
+import DoctorLayout from "../notifications/layoutDoctor";
 
 const initialFormValues = {
     doctorFullName: '',
@@ -67,7 +67,7 @@ const DoctorAccount : React.FC = () => {
     return (
       <>
         <Navbar isLoggedIn={true} />
-        <DoctorSidebar />
+        <DoctorLayout>
         <div className="p-5 sm:ml-64">
           <div className="grid gap-4 md:grid-cols-1 md:mt-20 sm:mt-14">
             <form onSubmit={handleSubmit}>
@@ -253,7 +253,7 @@ const DoctorAccount : React.FC = () => {
             </form>
           </div>
         </div>
-        
+        </DoctorLayout>
       </>
     );
 }

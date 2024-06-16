@@ -6,6 +6,8 @@ import logo from '../assets/images/logos/logowhiteleaf.png';
 import FeatureSection from '../components/features';
 // import Testimonial from '../components/testimonials';
 import Cta from '../components/cta';
+import Testimonials from '../components/testimonials';
+import testimonialsData from '../components/cards/testimonialCards';
 
 const Home: React.FC = () => {
     return (
@@ -44,7 +46,8 @@ const Home: React.FC = () => {
                 {/* Call to action section */}
                 <Cta />
                 {/* Testimonials Section */}
-                {/* <Testimonial /> */}
+                
+                <Testimonials testimonials={testimonialsData} />
               
             </main>
            
@@ -54,3 +57,4 @@ const Home: React.FC = () => {
 }
 
 export default Home;
+

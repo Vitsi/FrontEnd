@@ -1,22 +1,23 @@
+import React, { useState } from 'react';
 import Pagination from '../../../components/common/pagination';
 import LoadingSpinner from '../../../components/common/loadingSpinner';
-import { useState } from 'react';
-import PatientCard from '../../../components/cards/patientsCars';
+import PatientCard from '../../../components/cards/patientsCard'; // Fixed import typo
+import { useNavigate } from 'react-router-dom';
 
 const PatientsTab: React.FC = () => {
-  // Mock data for patients
+  const navigate = useNavigate(); // Corrected useNavigate usage
   const mockPatients = [
-    { image: 'https://via.placeholder.com/150', name: 'John Doe', age: 30, recordNumber: '12345', appointmentDate: '2024-06-01' },
-    { image: 'https://via.placeholder.com/150', name: 'Jane Smith', age: 35, recordNumber: '67890', appointmentDate: '2023-12-01' },
-    { image: 'https://via.placeholder.com/150', name: 'new name', age: 42, recordNumber: '1345', appointmentDate: '2024-12-01' },
-    { image: 'https://via.placeholder.com/150', name: 'name 3', age: 15, recordNumber: '6790', appointmentDate: '2023-09-01' },
-    { image: 'https://via.placeholder.com/150', name: 'Jaj nth', age: 23, recordNumber: '67r0', appointmentDate: '2023-09-01' },
+    { image: 'https://via.placeholder.com/150', name: 'John Doe', age: 30, gender: 'F', patientId: 1, recordNumber: '12345', appointmentDate: '2024-06-01' },
+    { image: 'https://via.placeholder.com/150', name: 'Jane Smith', age: 35, gender: 'M', patientId: 2, recordNumber: '67890', appointmentDate: '2023-12-01' },
+    { image: 'https://via.placeholder.com/150', name: 'New Name', age: 42, gender: 'F', patientId: 3, recordNumber: '1345', appointmentDate: '2024-12-01' },
+    { image: 'https://via.placeholder.com/150', name: 'Name 3', age: 15, gender: 'M', patientId: 4, recordNumber: '6790', appointmentDate: '2023-09-01' },
+    { image: 'https://via.placeholder.com/150', name: 'Jaj Nth', age: 23, gender: 'F', patientId: 5, recordNumber: '67', appointmentDate: '2023-09-01' },
   ];
 
   const [patients] = useState(mockPatients);
   const [loading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [cardsPerPage] = useState(10); // Number of cards to display per page
+  const [cardsPerPage] = useState(10);
 
   const totalCards = patients.length;
 
@@ -24,7 +25,10 @@ const PatientsTab: React.FC = () => {
     setCurrentPage(pageNumber);
   };
 
-  // Calculate the cards to display on the current page
+  const handleCardClick = (recordNumber: string) => {
+    navigate(`/medical-record/${recordNumber}`);
+  };
+
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCards = patients.slice(indexOfFirstCard, indexOfLastCard);
@@ -38,19 +42,21 @@ const PatientsTab: React.FC = () => {
             image={patient.image}
             name={patient.name}
             age={patient.age}
+            gender={patient.gender}
             recordNumber={patient.recordNumber}
             appointmentDate={patient.appointmentDate}
+            onClick={() => handleCardClick(patient.recordNumber)}
           />
         ))}
       </div>
-          
-            <Pagination
-              currentPage={currentPage}
-              totalCards={totalCards}
-              onPageChange={handlePageChange}
-              cardsPerPage={cardsPerPage}
-            />
-          
+
+      <Pagination
+        currentPage={currentPage}
+        totalCards={totalCards}
+        onPageChange={handlePageChange}
+        cardsPerPage={cardsPerPage}
+      />
+
       {loading && <LoadingSpinner />}
     </div>
   );

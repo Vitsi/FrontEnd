@@ -146,10 +146,10 @@ import { Calendar, momentLocalizer, Views, SlotInfo } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import Navbar from '../../../components/common/navbar';
-import DoctorSidebar from '../../../components/sidebar/doctorSidebar';
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
 import { addEvent, updateEvent, deleteEvent } from '../../../redux/calendarSlice';
 import { v4 as uuidv4 } from 'uuid';
+import DoctorLayout from '../notifications/layoutDoctor';
 
 const localizer = momentLocalizer(moment);
 
@@ -251,8 +251,7 @@ const DoctorCalendar: React.FC = () => {
   return (
     <>
       <Navbar isLoggedIn={true} />
-      <DoctorSidebar />
-      <div className="p-5 sm:ml-64 sm:mt-20 md:ml-18 md:p-3">
+      <DoctorLayout>      <div className="p-5 sm:ml-64 sm:mt-20 md:ml-18 md:p-3">
         {selectedSlot && (
           <div className="mb-4">
             <button
@@ -288,6 +287,7 @@ const DoctorCalendar: React.FC = () => {
           event={currentEvent}
         />
       </div>
+      </DoctorLayout>
     </>
   );
 };

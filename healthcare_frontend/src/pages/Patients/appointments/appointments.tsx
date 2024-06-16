@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Navbar from "../../../components/common/navbar";
-import PatientSidebar from "../../../components/sidebar/patientSidebar";
 import SearchBar from "../../../components/common/searchBar";
 import PatientRequest from "./patientRequest";
 // import PatientHospital from './patinetHospital';
 import AssignedHospitalRequests from './patientAssignedRequests';
+import Layout from '../notifications/layoutPatients';
 
 const Appointments: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState('Requests');
@@ -24,8 +24,8 @@ const Appointments: React.FC = () => {
 
   return (
     < section className=''>
+      <Layout>
       <Navbar isLoggedIn={true} />
-      <PatientSidebar />
       <SearchBar />
       <div className="p-5 sm:ml-64">
         <div className="grid gap-4 md:grid-cols-2">
@@ -58,6 +58,7 @@ const Appointments: React.FC = () => {
           {/* </div>
        </div>
       </div>  */}
+       </Layout>
     </section>
   );
 }

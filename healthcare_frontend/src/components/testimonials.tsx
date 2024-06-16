@@ -1,61 +1,108 @@
-import { useState } from 'react';
-import Card from '../components/card';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react';
+import React, { useState, useEffect } from 'react';
+import { MdFormatQuote } from 'react-icons/md';
 
-interface TestimonialsProps {
-  reviews: {
-    // Define the structure of your review object
-    // For example:
-    id: number;
+interface Testimonial {
     name: string;
+    role: string;
     content: string;
-  }[];
+    image: string;
 }
 
-const Testimonials = (props: TestimonialsProps) => {
-  const { reviews } = props;
-  const [index, setIndex] = useState(0);
+interface TestimonialsProps {
+    testimonials: Testimonial[];
+}
 
-  function leftShiftHandler() {
-    if (index - 1 < 0) {
-      setIndex(reviews.length - 1);
-    } else {
-      setIndex(index - 1);
-    }
-  }
+const Testimonials: React.FC<TestimonialsProps> = ({ testimonials }) => {
+    const [activeIndex, setActiveIndex] = useState(0);
 
-  function rightShiftHandler() {
-    if (index + 1 >= reviews.length) {
-      setIndex(0);
-    } else {
-      setIndex(index + 1);
-    }
-  }
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [testimonials.length]);
 
-  function surpriseHandler() {
-    const randomIndex = Math.floor(Math.random() * reviews.length);
-    setIndex(randomIndex);
-  }
-
-  return (
-    <div className='w-[85vw] md:w-[700px] bg-white flex flex-col justify-center items-center mt-10 p-10 transition-all duration-700 hover:shadow-xl rounded-md'>
-      <Card review={reviews[index]}></Card>
-
-      <div className='flex mx-auto text-3xl mt-5 gap-3 text-red-400 font-bold'>
-        <button onClick={leftShiftHandler} className='cursor-pointer hover:text-red-500'>
-          <ChevronLeftIcon className='h-5 w-5' />
-        </button>
-        <button onClick={rightShiftHandler} className='cursor-pointer hover:text-red-500'>
-          <ChevronRightIcon className='h-5 w-5' />
-        </button>
-      </div>
-      <div className='mt-5'>
-        <button onClick={surpriseHandler} className='bg-red-400 t-400 hover:bg-red-500 transition-all duration-200 cursor-pointer px-10 py-2 rounded-md font-bold text-white text-lg'>
-          Surprise Me
-        </button>
-      </div>
-    </div>
-  );
-};
+    return (
+        <div className="w-full 
+        max-w-3xl mx-auto 
+        text-center
+        h-[450px] 
+        ">
+            {/* Testimonial image */}
+            <div className="relative h-48 mb-8">
+                <div className="absolute top-0 left-1/2 
+                transform -translate-x-1/2
+                 w-[480px] h-[480px] 
+                 pointer-events-none before:absolute
+                  before:inset-0 before:bg-gradient-to-b
+                   before:from-indigo-500/25 
+                   before:via-indigo-500/5  
+                   before:to-indigo-500/0 before:to-75%
+                   before:rounded-full before:-z-10
+                   ">
+                    <div className="h-48">
+                        {testimonials.map((testimonial, index) => (
+                            <div
+                                key={index}
+                                className={`
+                                  absolute inset-0 flex 
+                                  justify-center items-center 
+                                  transition-opacity duration-700 
+                                  ease-in-out ${index === activeIndex ? 'opacity-100' : 'opacity-0'} ${index === activeIndex ? 'active' : ''}`}
+                                style={{
+                                    transform: `rotate(${index === activeIndex ? '0' : '360'}deg)`,
+                                    transition: 'transform 1s ease-in-out'
+                                }}
+                            >
+                                <img
+                                    className="relative 
+                                    bottom-48 left-20
+                                     -translate-x-20
+                                    rounded-full
+                                     border-2 border-blue-600
+                                    "
+                                    src={testimonial.image}
+                                    width="128"
+                                    height="128"
+                                    alt={testimonial.name}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+            {/* Text */}
+            <div className="mb-9">
+                <div className="relative flex flex-col transition-all duration-700 ease-in-out">
+                    {testimonials.map((testimonial, index) => (
+                        <div
+                            key={index}
+                            className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500 ease-in-out ${index === activeIndex ? 'opacity-100' : 'opacity-0'}`}
+                        >
+                            <div className="text-2xl font-bold text-gray-900">
+                                <MdFormatQuote className="inline-block mr-3 text-3xl" />
+                                {testimonial.content}
+                                <MdFormatQuote className="inline-block ml-3 text-3xl" />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            {/* Buttons */}
+            <div className="flex flex-wrap justify-center -m-1.5">
+                {testimonials.map((testimonial, index) => (
+                    <button
+                        key={index}
+                        className={`inline-flex justify-center whitespace-nowrap rounded-full px-3 py-1.5 m-10 text-sm font-semibold shadow-sm focus:outline-none focus:ring focus:ring-indigo-300 dark:focus:ring-slate-600 transition-colors duration-150 ${index === activeIndex ? 'bg-indigo-500 text-white shadow-indigo-950/10' : 'bg-white hover:bg-indigo-100 text-gray-900'}`}
+                        onClick={() => setActiveIndex(index)}
+                    >
+                        {testimonial.name} - {testimonial.role}
+                    </button>
+                ))}
+            </div>
+        </div>
+    );
+}
 
 export default Testimonials;
+

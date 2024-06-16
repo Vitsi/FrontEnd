@@ -5,7 +5,7 @@ import { RootState } from '../../../redux/store';
 import { useState } from "react";
 import { VscAccount } from "react-icons/vsc";
 import useForm from "../../../hooks/useForm";
-import ClerkSidebar from "../../../components/sidebar/clerkSidebar";
+import ClerkLayout from "../notifications/layoutClerk";
 
 const initialFormValues = {
     clerkFullName: '',
@@ -67,7 +67,7 @@ const ClerkAccount : React.FC = () => {
     return (
       <>
         <Navbar isLoggedIn={true} />
-        <ClerkSidebar />
+        <ClerkLayout>
         <div className="p-5 sm:ml-64">
           <div className="grid gap-4 md:grid-cols-1 md:mt-20 sm:mt-14">
             <form onSubmit={handleSubmit}>
@@ -253,7 +253,7 @@ const ClerkAccount : React.FC = () => {
             </form>
           </div>
         </div>
-        
+        </ClerkLayout>
       </>
     );
 }
