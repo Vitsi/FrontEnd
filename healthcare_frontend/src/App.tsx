@@ -40,10 +40,6 @@ import NotifClerk from './pages/clerk/notifications/notifClerk';
 import NotifHcp from './pages/hcp/notifications/notifHcp';
 import NotifAdmin from './pages/admin/notifications/notifAdmin';
 import NotificationTester from './pages/doctor/notifications/notifTester';
-// import DoctorLabTestRequest from './pages/doctor/home/doctorLabTestRequest';
-// import DoctorLabTestResult from './pages/doctor/home/doctorLabTestResult';
-// import { LabTestProvider } from './pages/labTech/home/labContext';
-// import LabTechRequests from './pages/labTech/home/labTechRequests';
 
 const App = () => {
   return (

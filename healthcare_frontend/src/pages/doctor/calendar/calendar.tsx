@@ -251,7 +251,8 @@ const DoctorCalendar: React.FC = () => {
   return (
     <>
       <Navbar isLoggedIn={true} />
-      <DoctorLayout>      <div className="p-5 sm:ml-64 sm:mt-20 md:ml-18 md:p-3">
+      <DoctorLayout>      
+        <div className="p-5 sm:ml-64 sm:mt-20 md:ml-18 md:p-3">
         {selectedSlot && (
           <div className="mb-4">
             <button
