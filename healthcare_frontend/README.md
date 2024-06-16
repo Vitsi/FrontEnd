@@ -11,7 +11,8 @@ react-icons
 toastify
 swiper
 pdfjs (doC viewr)
-lotttie
+<!-- lotttie -->
+use sound
 
 
 state mananegment

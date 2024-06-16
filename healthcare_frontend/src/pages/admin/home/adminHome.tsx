@@ -1,12 +1,14 @@
 import Navbar from "../../../components/common/navbar";
-import AdminLayout from "../notification/layoutAdmin";
+import AdminLayout from "../notifications/layoutAdmin";
 
 const AdminHome : React.FC = () => {
     return (
     <>
     <Navbar isLoggedIn={true}/>
-    <AdminLayout children={undefined}>
-        
+    <AdminLayout>
+    <div className="p-5 sm:ml-64">
+
+    </div>
     </AdminLayout>
     </>
     )

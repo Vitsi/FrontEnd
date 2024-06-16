@@ -38,7 +38,8 @@ import PageNotFound from './components/common/pageNotFound';
 import NotifDoctors from './pages/doctor/notifications/notifDoctor';
 import NotifClerk from './pages/clerk/notifications/notifClerk';
 import NotifHcp from './pages/hcp/notifications/notifHcp';
-import NotifAdmin from './pages/admin/notification/notifAdmin';
+import NotifAdmin from './pages/admin/notifications/notifAdmin';
+import NotificationTester from './pages/doctor/notifications/notifTester';
 // import DoctorLabTestRequest from './pages/doctor/home/doctorLabTestRequest';
 // import DoctorLabTestResult from './pages/doctor/home/doctorLabTestResult';
 // import { LabTestProvider } from './pages/labTech/home/labContext';
@@ -60,7 +61,7 @@ const App = () => {
           <Route path="/patient-medicalRecords" element={<MedicalRecords />} />
           <Route path="/patient-account" element={<PatientAccount />} />
           <Route path="/patient-notifications" element={<NotifPatients />} />
-          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/patient-feedback" element={<Feedback />} />
           <Route path="/chatbot" element={<ChatBot />} />
 
           <Route path="/hcp-manage-staff" element={<ManageStaff />} />
@@ -75,6 +76,7 @@ const App = () => {
           <Route path="/doctor-account" element={<DoctorAccount />} />
           <Route path="/doctor-feedback" element={<DoctorFeedback />} />
           <Route path="/doctor-notifications" element={<NotifDoctors />} />
+          <Route path="/test" element={<NotificationTester/>} />
 
           <Route path="/clerk-home" element={<ClerkHome />} />
           <Route path="/clerk-account" element={<ClerkAccount />} />

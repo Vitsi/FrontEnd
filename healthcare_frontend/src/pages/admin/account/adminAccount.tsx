@@ -1,5 +1,5 @@
 import Navbar from "../../../components/common/navbar";
-import AdminLayout from "../notification/layoutAdmin";
+import AdminLayout from "../notifications/layoutAdmin";
 
 const AdminAccount : React.FC = () => {
     return (
