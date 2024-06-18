@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const commonLabTests = [
     'Stool Analysis', 'RDT', 
@@ -10,13 +10,29 @@ const commonLabTests = [
     'Viral Microarray', 'Radiograph'
 ];
 
+interface LabTech {
+    id: number;
+    name: string;
+}
+
 const DoctorLabTestRequest: React.FC = () => {
     const [patientName, setPatientName] = useState('');
     const [patientRecordNumber, setPatientRecordNumber] = useState('');
     const [selectedLabTests, setSelectedLabTests] = useState<string[]>([]);
     const [additionalNotes, setAdditionalNotes] = useState('');
+    const [labTechs, setLabTechs] = useState<LabTech[]>([]);
+    const [selectedLabTech, setSelectedLabTech] = useState<number | null>(null);
     const [doctorName] = useState('Dr. Smith'); // Example default value
     const [doctorStaffId] = useState('D001'); // Example default value
+
+    useEffect(() => {
+        // Simulate fetching lab technicians from a backend
+        const fetchedLabTechs: LabTech[] = [
+            { id: 1, name: 'Lab Tech 1' },
+            { id: 2, name: 'Lab Tech 2' },
+        ];
+        setLabTechs(fetchedLabTechs);
+    }, []);
 
     const handleLabTestSelection = (labTest: string) => {
         setSelectedLabTests((prevSelectedTests) =>
@@ -31,7 +47,7 @@ const DoctorLabTestRequest: React.FC = () => {
         const newLabTest = {
             labTestId: Date.now(),
             patientId: 1, // Placeholder for patient ID (to be fetched from backend)
-            labTechId: 2, // Placeholder for lab tech ID (to be assigned by backend)
+            labTechId: selectedLabTech, // Selected lab tech ID
             doctorId: 3, // Placeholder for doctor ID (to be fetched from backend)
             value: {
                 selectedLabTests,
@@ -55,16 +71,16 @@ const DoctorLabTestRequest: React.FC = () => {
         setPatientRecordNumber('');
         setSelectedLabTests([]);
         setAdditionalNotes('');
+        setSelectedLabTech(null);
 
         console.log('Lab test request sent:', newLabTest);
     };
-    
 
     return (
         <div className="md:ml-64 sm:ml-64 sm:pl-4 sm:pt-4 lg-14">
             <div className="container mx-auto p-4">
                 <h1 className="text-2xl font-bold mb-4">Request Lab Test</h1>
-                <form onSubmit={handleSendRequest}>
+                <form onSubmit={(e) => { e.preventDefault(); handleSendRequest(); }}>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">
                             Patient Name
@@ -115,6 +131,24 @@ const DoctorLabTestRequest: React.FC = () => {
                             className="w-full px-3 py-2 border border-gray-300 rounded"
                             rows={4}
                         ></textarea>
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                            Select Lab Technician
+                        </label>
+                        <select
+                            value={selectedLabTech || ''}
+                            onChange={(e) => setSelectedLabTech(Number(e.target.value))}
+                            className="w-full px-3 py-2 border border-gray-300 rounded"
+                            required
+                        >
+                            <option value="">Select a lab technician</option>
+                            {labTechs.map((tech) => (
+                                <option key={tech.id} value={tech.id}>
+                                    {tech.name}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                     <div className="flex justify-end">
                         <button
