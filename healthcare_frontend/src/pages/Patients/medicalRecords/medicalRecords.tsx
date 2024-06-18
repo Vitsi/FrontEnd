@@ -8,24 +8,20 @@ const PersonalMedicalRecords: React.FC = () => {
   const [medicalRecords, setMedicalRecords] = useState<any[]>([]); 
 
   useEffect(() => {
-    // Simulated fetch of medical records (replace with actual API call)
     const fetchMedicalRecords = async () => {
-      // Replace with actual API endpoint to fetch medical records for the logged-in patient
       try {
-        // Example: Fetching medical records from a hypothetical API
         const response = await fetch('https://api.example.com/medical-records');
         if (!response.ok) {
           throw new Error('Failed to fetch medical records');
         }
         const data = await response.json();
-        setMedicalRecords(data); // Update state with fetched medical records
+        setMedicalRecords(data);
       } catch (error) {
         console.error('Error fetching medical records:', error);
-        // Handle error scenario (e.g., show error message to user)
       }
     };
 
-    fetchMedicalRecords(); // Call the function to fetch medical records
+    fetchMedicalRecords();
   }, []);
 
   return (
