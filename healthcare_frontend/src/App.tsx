@@ -41,6 +41,10 @@ import NotifAdmin from './pages/admin/notifications/notifAdmin';
 import NotificationTester from './pages/doctor/notifications/notifTester';
 import MedicalHistory from './pages/doctor/home/medicalHistory';
 import PersonalMedicalRecords from './pages/Patients/medicalRecords/medicalRecords';
+import FaqPage from './pages/landing/faq';
+import AboutUsPage from './pages/landing/AboutUs';
+import ServicesPage from './pages/landing/services';
+import FeaturesPage from './pages/landing/features';
 
 const App = () => {
   return (
@@ -51,6 +55,11 @@ const App = () => {
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup-patient" element={<SignupPatients />} />
           <Route path="/signup-hospital" element={<SignupHospitals />} />
+          <Route path="/faq" element={<FaqPage />} />
+          <Route path="/about" element={<AboutUsPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/features" element={<FeaturesPage />} />
+
 
           <Route path="/patient-home" element={<PatientHome />} />
           <Route path="/patient-appointments" element={<Appointments />} />

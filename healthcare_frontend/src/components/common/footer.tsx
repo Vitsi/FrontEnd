@@ -1,4 +1,3 @@
-import React from 'react';
 import logo from '../../assets/images/logos/logowhiteleaf.png';
 
 const Footer = () => {
@@ -9,31 +8,31 @@ const Footer = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 lg:gap-8 gap-12 pt-14 pb-20 max-w-md mx-auto md:max-w-xl lg:max-w-full">
           {/* Our Services */}
           <div className="block">
-            <h4 className="text-xl text-white font-bold mb-7">Pagedone</h4>
+            <h4 className="text-xl text-white font-bold mb-7">Unicare</h4>
             <ul className="text-lg transition-all duration-500">
-              <li className="mb-6"><a href="javascript:;" className="text-gray-400 hover:text-white">Home</a></li>
-              <li className="mb-6"><a href="javascript:;" className="text-gray-400 hover:text-white">About</a></li>
-              <li className="mb-6"><a href="javascript:;" className="text-gray-400 hover:text-white">Pricing</a></li>
-              <li className="mb-6"><a href="javascript:;" className="text-gray-400 hover:text-white">Features</a></li>
-              <li><a href="javascript:;" className="text-gray-400 hover:text-white">Pro Version</a></li>
+              <li className="mb-6"><a href="/" className="text-gray-400 hover:text-white">Home</a></li>
+              <li className="mb-6"><a href="/about" className="text-gray-400 hover:text-white">About</a></li>
+              {/* <li className="mb-6"><a href="javascript:;" className="text-gray-400 hover:text-white">Pricing</a></li> */}
+              <li className="mb-6"><a href="/features" className="text-gray-400 hover:text-white">Features</a></li>
+              {/* <li><a href="javascript:;" className="text-gray-400 hover:text-white">Pro Version</a></li> */}
             </ul>
           </div>
           {/* Support */}
           <div className="block">
             <h4 className="text-xl text-white font-bold mb-7">Support</h4>
             <ul className="text-lg transition-all duration-500">
-              <li className="mb-6"><a href="javascript:;" className="text-gray-400 hover:text-white">Customer Suppor</a></li>
-              <li className="mb-6"><a href="javascript:;" className="text-gray-400 hover:text-white">Cookies</a></li>
-              <li className="mb-6"><a href="javascript:;" className="text-gray-400 hover:text-white">FAQ</a></li>
+              <li className="mb-6"><a href="/customer-suport" className="text-gray-400 hover:text-white">Customer Suppor</a></li>
+              <li className="mb-6"><a href="/cookies" className="text-gray-400 hover:text-white">Cookies</a></li>
+              <li className="mb-6"><a href="/faq" className="text-gray-400 hover:text-white">FAQ</a></li>
             </ul>
           </div>
           {/* Legal */}
           <div className="block">
             <h4 className="text-xl text-white font-bold mb-7">Legal</h4>
             <ul className="text-lg transition-all duration-500">
-              <li className="mb-6"><a href="javascript:;" className="text-gray-400 hover:text-white">General Information</a></li>
-              <li className="mb-6"><a href="javascript:;" className="text-gray-400 hover:text-white">Privacy Policy</a></li>
-              <li className="mb-6"><a href="javascript:;" className="text-gray-400 hover:text-white">Terms & Conditions</a></li>
+              <li className="mb-6"><a href="/general-information" className="text-gray-400 hover:text-white">General Information</a></li>
+              <li className="mb-6"><a href="/privacy-policy" className="text-gray-400 hover:text-white">Privacy Policy</a></li>
+              <li className="mb-6"><a href="/TandC" className="text-gray-400 hover:text-white">Terms & Conditions</a></li>
             </ul>
           </div>
           {/* socials */}
