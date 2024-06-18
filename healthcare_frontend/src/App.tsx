@@ -7,7 +7,6 @@ import Signin from './pages/login/signin';
 import SignupHospitals from './pages/login/signupHcp';
 import PatientHome from './pages/Patients/home/patientHome';
 import Appointments from './pages/Patients/appointments/appointments';
-import MedicalRecords from './pages/Patients/medicalRecords/medicalRecords';
 import PatientAccount from './pages/Patients/account/parientAccount';
 import Feedback from './pages/Patients/feedback/feedback';
 import ManageStaff from './pages/hcp/staff/manageStaff';
@@ -40,6 +39,8 @@ import NotifClerk from './pages/clerk/notifications/notifClerk';
 import NotifHcp from './pages/hcp/notifications/notifHcp';
 import NotifAdmin from './pages/admin/notifications/notifAdmin';
 import NotificationTester from './pages/doctor/notifications/notifTester';
+import MedicalHistory from './pages/doctor/home/medicalHistory';
+import PersonalMedicalRecords from './pages/Patients/medicalRecords/medicalRecords';
 
 const App = () => {
   return (
@@ -54,7 +55,7 @@ const App = () => {
           <Route path="/patient-home" element={<PatientHome />} />
           <Route path="/patient-appointments" element={<Appointments />} />
           <Route path="/patient-requests" element={<PatientRequest />} />
-          <Route path="/patient-medicalRecords" element={<MedicalRecords />} />
+          <Route path="/patient-medicalRecords" element={<PersonalMedicalRecords />} />
           <Route path="/patient-account" element={<PatientAccount />} />
           <Route path="/patient-notifications" element={<NotifPatients />} />
           <Route path="/patient-feedback" element={<Feedback />} />
@@ -67,7 +68,8 @@ const App = () => {
           <Route path="/hcp-notifications" element={<NotifHcp />} />
 
           <Route path="/doctor-home" element={<DoctorHome />} />
-          <Route path="/medical-record/:patientId" element={<MedicalRecord patientId={0} patientName={''} patientAge={0} />} />
+          <Route path="/medical-record/:recordNumber" element={<MedicalRecord />}/>
+          <Route path="/medical-history/:recordNumber" element={<MedicalHistory/>}/> 
           <Route path="/doctor-calendar" element={<DoctorCalandar />} />
           <Route path="/doctor-account" element={<DoctorAccount />} />
           <Route path="/doctor-feedback" element={<DoctorFeedback />} />

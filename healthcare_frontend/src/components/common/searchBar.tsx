@@ -24,7 +24,7 @@ const SearchBar: React.FC = () => {
                         placeholder="Search for hospitals, doctors, services..."
                     />
                     <button type="submit" 
-                    className="p-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition duration-300 ">
+                    className="p-3 bg-blue-700 text-white rounded-full hover:bg-blue-700 transition duration-300 ">
                         <IoIosSearch className="h-6 w-6" />
                     </button>
                 </div>

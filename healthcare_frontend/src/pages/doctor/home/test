@@ -1,0 +1,535 @@
+// import React, { useState, useEffect } from "react";
+// import { useParams } from "react-router-dom";
+
+// // Define interfaces
+// interface MedicalRecord {
+//   recordId: number;
+//   patientId: number;
+//   hospitalId: number;
+//   doctorId: number;
+//   recordNumber: string;
+//   dateOfVisit: string;
+//   weight: number;
+//   height: number;
+//   bloodType: string;
+//   prescription: string;
+//   diagnosis: string;
+//   allergies: {
+//     hasAllergies: boolean;
+//     medication: string[];
+//     other: string[];
+//   };
+//   symptoms: {
+//     description: string;
+//     duration: string;
+//   };
+//   vitalSigns: {
+//     bloodPressure: string;
+//     heartRate: number;
+//     respiratoryRate: number;
+//     temperature: number;
+//   };
+//   socialHistory: {
+//     smoking: string;
+//     alcohol: string;
+//     drugUse: string;
+//   };
+//   labTestResults: LabTest[];
+// }
+
+// interface LabTest {
+//   labTestId: number;
+//   patientId: number;
+//   value: {
+//     labTestNotes: string;
+//   };
+// }
+
+// interface MedicalRecordProps {
+//   patientId: number;
+//   patientName: string;
+//   patientAge: number;
+//   gender: string;
+//   emergencyContact: string;
+
+// }
+
+// const MedicalRecord: React.FC<MedicalRecordProps> = ({
+//   patientId,
+//   patientName,
+//   patientAge,
+//   gender,
+//   emergencyContact,
+// }) => {
+//   const { recordNumber } = useParams<{ recordNumber: string }>(); // Fetching recordNumber from route params
+//   const [medicalRecord, setMedicalRecord] = useState<MedicalRecord | null>(
+//     null
+//   );
+//   const [labTests, setLabTests] = useState<LabTest[]>([]);
+//   const [formData, setFormData] = useState({
+//     weight: "",
+//     height: "",
+//     weightUnit: "kg",
+//     heightUnit: "cm",
+//     bloodType: "",
+//     prescription: "",
+//     diagnosis: "",
+//     allergies: {
+//       hasAllergies: false,
+//       medication: [],
+//       other: [],
+//     },
+//     symptoms: {
+//       description: "",
+//       duration: "",
+//     },
+//     vitalSigns: {
+//       bloodPressure: "",
+//       heartRate: "",
+//       respiratoryRate: "",
+//       temperature: "",
+//     },
+//     socialHistory: {
+//       smoking: "",
+//       alcohol: "",
+//       drugUse: "",
+//     },
+//   });
+
+//   useEffect(() => {
+//     // Simulating fetching from local storage or backend
+//     const storedRecords = JSON.parse(
+//       localStorage.getItem("medicalRecords") || "[]"
+//     );
+//     const record = storedRecords.find(
+//       (r: MedicalRecord) => r.recordNumber === recordNumber
+//     );
+//     if (record) {
+//       setMedicalRecord(record);
+
+//       // Simulating fetching lab tests associated with the patient
+//       const storedLabTests = JSON.parse(localStorage.getItem("labTests") || "[]");
+//       const tests = storedLabTests.filter((test: LabTest) => test.patientId === record.patientId);
+//       setLabTests(tests);
+//     }
+//   }, [recordNumber]);
+
+//   const handleInputChange = (
+//     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+//   ) => {
+//     const { name, value } = e.target;
+
+//     if (name === "hasAllergies") {
+//       setFormData({
+//         ...formData,
+//         allergies: {
+//           ...formData.allergies,
+//           hasAllergies: value === "true",
+//         },
+//       });
+//     } else if (name.startsWith("allergy-")) {
+//       const allergyType = name.split("-")[1];
+//       setFormData({
+//         ...formData,
+//         allergies: {
+//           ...formData.allergies,
+//           [allergyType]: [...formData.allergies
+//             [allergyType as keyof typeof formData.allergies], 
+//              value],
+//         },
+//       });
+    // } else if (name.startsWith("symptoms-")) {
+    //   const symptomType = name.split("-")[1];
+    //   setFormData({
+    //     ...formData,
+    //     symptoms: {
+    //       ...formData.symptoms,
+    //       [symptomType]: value,
+    //     },
+    //   });
+//     } else if (name.startsWith("vitalSigns-")) {
+//       const vitalSignType = name.split("-")[1];
+//       setFormData({
+//         ...formData,
+//         vitalSigns: {
+//           ...formData.vitalSigns,
+//           [vitalSignType]: value,
+//         },
+//       });
+//     } else if (name.startsWith("socialHistory-")) {
+//       const socialHistoryType = name.split("-")[1];
+//       setFormData({
+//         ...formData,
+//         socialHistory: {
+//           ...formData.socialHistory,
+//           [socialHistoryType]: value,
+//         },
+//       });
+//     } else if (name.startsWith("emergencyContact-")) {
+//       const emergencyContactType = name.split("-")[1];
+//       setFormData({
+//         ...formData,
+//         emergencyContact: {
+//           ...formData.emergencyContact,
+//           [emergencyContactType]: value,
+//         },
+//       });
+//     } else {
+//       setFormData({ ...formData, [name]: value });
+//     }
+//   };
+
+//   const handleSubmit = () => {
+//     const updatedRecord: MedicalRecord = {
+//       recordId: medicalRecord ? medicalRecord.recordId : 0,
+//       patientId: patientId,
+//       hospitalId: 0,
+//       doctorId: 0,
+//       recordNumber: recordNumber,
+//       dateOfVisit: new Date().toISOString(),
+//       weight: parseFloat(formData.weight),
+//       height: parseFloat(formData.height),
+//       bloodType: formData.bloodType,
+//       prescription: formData.prescription,
+//       diagnosis: formData.diagnosis,
+//       allergies: {
+//         hasAllergies: formData.allergies.hasAllergies,
+//         medication: [...formData.allergies.medication],
+//         other: [...formData.allergies.other],
+//       },
+//       symptoms: {
+//         description: formData.symptoms.description,
+//         duration: formData.symptoms.duration,
+//       },
+//       vitalSigns: {
+//         bloodPressure: formData.vitalSigns.bloodPressure,
+//         heartRate: parseInt(formData.vitalSigns.heartRate),
+//         respiratoryRate: parseInt(formData.vitalSigns.respiratoryRate),
+//         temperature: parseFloat(formData.vitalSigns.temperature),
+//       },
+//       socialHistory: {
+//         smoking: formData.socialHistory.smoking,
+//         alcohol: formData.socialHistory.alcohol,
+//         drugUse: formData.socialHistory.drugUse,
+//       },
+//       labTestResults: medicalRecord ? medicalRecord.labTestResults : [],
+//     };
+
+//     const storedRecords = JSON.parse(
+//       localStorage.getItem("medicalRecords") || "[]"
+//     );
+//     const updatedRecords = storedRecords.map((record: MedicalRecord) =>
+//       record.recordNumber === recordNumber ? updatedRecord : record
+//     );
+//     localStorage.setItem("medicalRecords", JSON.stringify(updatedRecords));
+//     setMedicalRecord(updatedRecord);
+
+//     console.log("Medical record updated:", updatedRecord);
+//   };
+
+//   const handleUpdateFullHistory = () => {
+//     if (
+//       window.confirm(
+//         "Are you sure you want to update the full medical history? This action may include sensitive patient data."
+//       )
+//     ) {
+//       handleSubmit();
+//     }
+//   };
+
+//   return (
+//     <div className="p-5">
+//       <h2 className="text-2xl font-bold mb-4">Medical Record</h2>
+//       <div>
+//         <p className="text-lg text-blue-600 font-bold mb-2">Patient Information:</p>
+//         <p className="font-semibold">Name: {patientName}</p>
+//         <p className="font-semibold">Age: {patientAge}</p>
+//         <p className="font-semibold">Gender: {gender}</p>
+//         <div>
+//           <label className="block text-gray-700 text-sm font-bold mb-2">
+//             Date of Visit
+//           </label>
+//           <input
+//             type="text"
+//             value={
+//               medicalRecord
+//                 ? new Date(medicalRecord.dateOfVisit).toLocaleString()
+//                 : ""
+//             }
+//             readOnly
+//             className="w-full px-3 py-2 border border-gray-300 rounded"
+//           />
+//         </div>
+//         <div>
+//           <label className="block text-gray-700 text-sm font-bold mb-2">
+//             Weight (kg)
+//           </label>
+//           <div className="flex">
+//             <input
+//               type="number"
+//               name="weight"
+//               value={formData.weight}
+//               onChange={handleInputChange}
+//               className="w-full px-3 py-2 border border-gray-300 rounded mr-2"
+//             />
+//             <span className="self-center">kg</span>
+//           </div>
+//         </div>
+//         <div>
+//           <label className="block text-gray-700 text-sm font-bold mb-2">
+//             Height (cm)
+//           </label>
+//           <div className="flex">
+//             <input
+//               type="number"
+//               name="height"
+//               value={formData.height}
+//               onChange={handleInputChange}
+//               className="w-full px-3 py-2 border border-gray-300 rounded mr-2"
+//             />
+//             <span className="self-center">cm</span>
+//           </div>
+//         </div>
+//         <div>
+//           <label className="block text-gray-700 text-sm font-bold mb-2">
+//             Blood Type
+//           </label>
+//           <input
+//             type="text"
+//             name="bloodType"
+//             value={formData.bloodType}
+//             onChange={handleInputChange}
+//             placeholder="A, B, O, AB"
+//             className="w-full px-3 py-2 border border-gray-300 rounded"
+//           />
+//         </div>
+        
+//         <div className="col-span-2">
+//           <label className="block text-blue-600 text-sm font-bold mb-2">
+//             Allergies
+//           </label>
+//           <div className="flex items-center mb-2">
+//             <input
+//               type="radio"
+//               id="hasAllergiesYes"
+//               name="hasAllergies"
+//               value="true"
+//               checked={formData.allergies.hasAllergies}
+//               onChange={handleInputChange}
+//               className="mr-2"
+//             />
+//             <label htmlFor="hasAllergiesYes" className="mr-4">
+//               Yes
+//             </label>
+//             <input
+//               type="radio"
+//               id="hasAllergiesNo"
+//               name="hasAllergies"
+//               value="false"
+//               checked={!formData.allergies.hasAllergies}
+//               onChange={handleInputChange}
+//               className="mr-2"
+//             />
+//             <label htmlFor="hasAllergiesNo">No</label>
+//           </div>
+//           {formData.allergies.hasAllergies && (
+//             <>
+//               <label className="block text-gray-700 text-sm font-bold mb-2">
+//                 Medication Allergies
+//               </label>
+//               <input
+//                 type="text"
+//                 name="allergy-medication"
+//                 value={formData.allergies.medication.join(", ")}
+//                 onChange={handleInputChange}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded mb-2"
+//               />
+//               <label className="block text-gray-700 text-sm font-bold mb-2">
+//                 Other Allergies(Food Allergies...)
+//               </label>
+//               <input
+//                 type="text"
+//                 name="allergy-other"
+//                 value={formData.allergies.other.join(", ")}
+//                 onChange={handleInputChange}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//               />
+//             </>
+//           )}
+//         </div>
+//         <div className="col-span-2">
+//           <label className="block text-gray-700 text-sm font-bold mb-2">
+//             Symptoms
+//           </label>
+//           <textarea
+//             placeholder="Headache, Cramps, Fatigue..."
+//             name="symptoms-description"
+//             value={formData.symptoms.description}
+//             onChange={handleInputChange}
+//             className="w-full px-3 py-2 border border-gray-300 rounded mb-2"
+//             rows={4}
+//           ></textarea>
+//           <label className="block text-gray-700 text-sm font-bold mb-2">
+//             Duration of Symptoms
+//           </label>
+//           <input
+//           placeholder="3 days, 2 weeks..."
+//             type="text"
+//             name="symptoms-duration"
+//             value={formData.symptoms.duration}
+//             onChange={handleInputChange}
+//             className="w-full px-3 py-2 border border-gray-300 rounded"
+//           />
+//         </div>
+//         <div className="col-span-2">
+//           <label className="block text-blue-600 text-sm font-bold mb-2">
+//             Vital Signs
+//           </label>
+//           <div className="grid grid-cols-2 gap-4">
+//             <div>
+//               <label className="block text-gray-700 text-sm font-bold mb-2">
+//                 Blood Pressure
+//               </label>
+//               <input
+//                 type="text"
+//                 name="vitalSigns-bloodPressure"
+//                 value={formData.vitalSigns.bloodPressure}
+//                 onChange={handleInputChange}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//               />
+//             </div>
+//             <div>
+//               <label className="block text-gray-700 text-sm font-bold mb-2">
+//                 Heart Rate
+//               </label>
+//               <input
+//                 type="number"
+//                 name="vitalSigns-heartRate"
+//                 value={formData.vitalSigns.heartRate}
+//                 onChange={handleInputChange}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//               />
+//             </div>
+//             <div>
+//               <label className="block text-gray-700 text-sm font-bold mb-2">
+//                 Respiratory Rate
+//               </label>
+//               <input
+//                 type="number"
+//                 name="vitalSigns-respiratoryRate"
+//                 value={formData.vitalSigns.respiratoryRate}
+//                 onChange={handleInputChange}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//               />
+//             </div>
+//             <div>
+//               <label className="block text-gray-700 text-sm font-bold mb-2">
+//                 Temperature
+//               </label>
+//               <input
+//                 type="number"
+//                 name="vitalSigns-temperature"
+//                 value={formData.vitalSigns.temperature}
+//                 onChange={handleInputChange}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//               />
+//             </div>
+//           </div>
+//         </div>
+//         <div className="col-span-2">
+//           <label className="block text-blue-600 text-sm font-bold mb-2">
+//             Social History
+//           </label>
+//           <div className="grid grid-cols-2 gap-4">
+//             <div>
+//               <label className="block text-gray-700 text-sm font-bold mb-2">
+//                 Smoking History
+//               </label>
+//               <input
+//                 type="text"
+//                 name="socialHistory-smoking"
+//                 value={formData.socialHistory.smoking}
+//                 onChange={handleInputChange}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//               />
+//             </div>
+//             <div>
+//               <label className="block text-gray-700 text-sm font-bold mb-2">
+//                 Alcohol Consumption
+//               </label>
+//               <input
+//                 type="text"
+//                 name="socialHistory-alcohol"
+//                 value={formData.socialHistory.alcohol}
+//                 onChange={handleInputChange}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//               />
+//             </div>
+//             <div>
+//               <label className="block text-gray-700 text-sm font-bold mb-2">
+//                 Drug Use
+//               </label>
+//               <input
+//                 type="text"
+//                 name="socialHistory-drugUse"
+//                 value={formData.socialHistory.drugUse}
+//                 onChange={handleInputChange}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//               />
+//             </div>
+//           </div>
+//         </div>
+        
+       
+//       </div>
+//       <div className="col-span-2">
+//           <label className="mt-3 block text-gray-700 text-sm font-bold mb-2">
+//             Prescription
+//           </label>
+//           <textarea
+//             name="prescription"
+//             value={formData.prescription}
+//             onChange={handleInputChange}
+//             className="w-full px-3 py-2 border border-gray-300 rounded"
+//             rows={4}
+//           ></textarea>
+//         </div>
+//         <div className="col-span-2">
+//           <label className="block text-gray-700 text-sm font-bold mb-2">
+//             Diagnosis
+//           </label>
+//           <textarea
+//             name="diagnosis"
+//             value={formData.diagnosis}
+//             onChange={handleInputChange}
+//             className="w-full px-3 py-2 border border-gray-300 rounded"
+//             rows={4}
+//           ></textarea>
+//         </div>
+//       <div className="mt-5">
+//         <h3 className="text-xl font-bold mb-2">Lab Test Results</h3>
+//         <ul>
+//           {labTests.map((test) => (
+//             <li key={test.labTestId}>{test.value.labTestNotes}</li>
+//           ))}
+//         </ul>
+//       </div>
+//       <button
+//         onClick={handleSubmit}
+//         className="bg-blue-600 text-white px-4 py-2 rounded mt-4 mr-4"
+//       >
+//         Update Data
+//       </button>
+//       <button
+//         onClick={handleUpdateFullHistory}
+//         className="bg-green-600 text-white px-4 py-2 rounded mt-4"
+//       >
+//         Update Full Medical History
+//       </button>
+
+//     </div>
+//   );
+// };
+
+// export default MedicalRecord;
+

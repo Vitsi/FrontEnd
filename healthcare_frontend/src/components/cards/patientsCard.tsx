@@ -8,6 +8,7 @@ interface PatientCardProps {
   gender: string;
   recordNumber: string;
   appointmentDate: string;
+  emergencyContact: string;
   onClick: () => void;
 }
 

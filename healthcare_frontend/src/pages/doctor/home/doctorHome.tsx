@@ -31,19 +31,19 @@ const DoctorHome : React.FC = () => {
         <div className="grid gap-4 md:grid-cols-2">
           <div id="top-pagination" className="flex flex-row gap-10">
             <button
-              className={`text-lg font-bold ${selectedTab === 'PatientsTab' ? 'text-blue-500 border-b-2 border-blue-500' : ''}`}
+              className={`text-lg font-bold ${selectedTab === 'PatientsTab' ? 'text-blue-700 border-b-2 border-blue-500' : ''}`}
               onClick={() => setSelectedTab('PatientsTab')}
             >
               Patients
             </button>
             <button
-              className={`text-lg font-bold ${selectedTab === 'LabRequests' ? 'text-blue-500 border-b-2 border-blue-500' : ''}`}
+              className={`text-lg font-bold ${selectedTab === 'LabRequests' ? 'text-blue-700 border-b-2 border-blue-500' : ''}`}
               onClick={() => setSelectedTab('LabRequests')}
             >
               Lab Test Requests
             </button>
             <button
-              className={`text-lg font-bold ${selectedTab === 'LabResults' ? 'text-blue-500 border-b-2 border-blue-500' : ''}`}
+              className={`text-lg font-bold ${selectedTab === 'LabResults' ? 'text-blue-700 border-b-2 border-blue-500' : ''}`}
               onClick={() => setSelectedTab('LabResults')}
             >
               Lab Test Results

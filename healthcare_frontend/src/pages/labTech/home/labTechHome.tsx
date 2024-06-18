@@ -24,7 +24,7 @@ const LabTechHome : React.FC = () => {
         <div className="grid gap-4 md:grid-cols-2">
            <div id="top-pagination" className="flex flex-row gap-10">
              <button
-              className={`text-lg font-bold ${selectedTab === 'LabTechRequests' ? 'text-blue-500 border-b-2 border-blue-500' : ''}`}
+              className={`text-lg font-bold ${selectedTab === 'LabTechRequests' ? 'text-blue-700 border-b-2 border-blue-500' : ''}`}
               onClick={() => setSelectedTab('LabTechRequests')}
             >
                LabTest Requests
